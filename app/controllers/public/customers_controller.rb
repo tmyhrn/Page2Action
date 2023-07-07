@@ -7,18 +7,18 @@ class Public::CustomersController < ApplicationController
   end
 
   def show
-    @customer = Customer.find(current_customer.id)
+    @customer = Customer.find(params[:id])
   end
 
   def edit
-    @customer = Customer.find(current_customer.id)
+    @customer = Customer.find(params[:id])
   end
   
   def update
-    @customer = Customer.find(current_customer.id)
+    @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       flash[:success] = "会員情報が更新されました。"
-      redirect_to customer_path
+      redirect_to customer_path(@customer)
     else
       flash.now[:danger] = "未記入項目があります。"
       render :edit
@@ -40,7 +40,7 @@ class Public::CustomersController < ApplicationController
   private
   
   def customer_params
-    params.require(:customer).permit(:nickname, :email, :is_deleted)
+    params.require(:customer).permit(:nickname, :introduction, :profile_image, :email, :is_deleted)
   end
   
   def ensure_correct_customer

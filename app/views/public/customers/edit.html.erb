@@ -7,6 +7,16 @@
     <%= form_with(model: @customer, method: :patch) do |f| %>
     
     <form>
+      <!--ユーザー画像の変更-->
+      <div class="form-group row justify-content-center">
+        <label class="col-md-3 col-form-label">プロフィール画像</label>
+        <div class="col-md-9 form-row mb-4">
+          <div class="col-md-6">
+            <%= f.file_field :profile_image, class: "form-control, accept: 'image/*" %>
+          </div>
+        </div>
+      </div>
+      
       <!--ニックネームの変更-->
       <div class="form-group row justify-content-center">
         <label class="col-md-3 col-form-label">ニックネーム</label>
@@ -17,7 +27,7 @@
         </div>
       </div>
       
-      <!--ニックネームの変更-->
+      <!--自己紹介の変更-->
       <div class="form-group row justify-content-center">
         <label class="col-md-3 col-form-label">自己紹介</label>
         <div class="col-md-9 form-row mb-4">
