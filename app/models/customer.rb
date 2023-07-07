@@ -5,7 +5,6 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   validates :nickname, presence: true
-  validates :introduction, presence: true
   validates :email, presence: true
   validates :encrypted_password, presence: true
   

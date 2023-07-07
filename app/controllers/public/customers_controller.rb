@@ -7,7 +7,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def show
-    @customer = Customer.find(current_customer.id)
+    @customer = Customer.find(params[:id])
   end
 
   def edit
@@ -32,7 +32,7 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(current_customer.id)
     @customer.update(is_deleted: true)
     reset_session
-    flash[:danger] = "退会処理を実行しました"
+    flash[:danger] = "ありがとうございました。またのご利用を心よりお待ちしております。"
     redirect_to root_path
   end
   
@@ -43,7 +43,7 @@ class Public::CustomersController < ApplicationController
   end
   
   def ensure_correct_customer
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find(current_customer.id)
     unless @customer == current_customer
       redirect_to customer_path(current_customer)
     end
