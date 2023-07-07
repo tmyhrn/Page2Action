@@ -13,10 +13,10 @@
             <% if customer_signed_in? %>
 
                <li class="nav-item mx-1 pt-2">
-                 <%= link_to "マイページ", class: 'nav-link text-dark btn btn-outline-light', style: "width: 100px;" %>
+                 <%= link_to "マイページ", customer_path(current_customer), class: 'nav-link text-dark btn btn-outline-light', style: "width: 100px;" %>
                </li>
                <li class="nav-item mx-1 pt-2">
-                 <%= link_to "読書家検索", class: 'nav-link text-dark btn btn-outline-light', style: "width: 85px;" %>
+                 <%= link_to "読書家検索", customers_path, class: 'nav-link text-dark btn btn-outline-light', style: "width: 100px;" %>
                </li>
                <li class="nav-item mx-1 pt-2">
                  <%= link_to "みんなの投稿", class: 'nav-link text-dark btn btn-outline-light', style: "width: 70px;"  %>
