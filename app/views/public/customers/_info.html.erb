@@ -1,0 +1,17 @@
+<table class="table">
+  <tr><%= image_tag customer.get_profile_image, size:'100x100' %></tr>
+  <tr>
+    <th>ニックネーム</th>
+    <th><%= customer.nickname %></th>
+  </tr>
+  <tr>
+    <th>introduction</th>
+    <th><%= customer.introduction %></th>
+  </tr>
+</table>
+
+<div class='row'>
+  <%= link_to edit_customer_path(user), class: "btn btn-outline-secondary btn-block" do %>
+     <i class="fas fa-user-cog"></i>
+  <% end %>
+</div>
