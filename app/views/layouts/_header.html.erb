@@ -16,10 +16,10 @@
                  <%= link_to "マイページ", class: 'nav-link text-dark btn btn-outline-light', style: "width: 100px;" %>
                </li>
                <li class="nav-item mx-1 pt-2">
-                 <%= link_to "商品一覧", class: 'nav-link text-dark btn btn-outline-light', style: "width: 85px;" %>
+                 <%= link_to "読書家検索", class: 'nav-link text-dark btn btn-outline-light', style: "width: 85px;" %>
                </li>
                <li class="nav-item mx-1 pt-2">
-                 <%= link_to "カート", class: 'nav-link text-dark btn btn-outline-light', style: "width: 70px;"  %>
+                 <%= link_to "みんなの投稿", class: 'nav-link text-dark btn btn-outline-light', style: "width: 70px;"  %>
                </li>
                <li class="nav-item mx-1 pt-2">
                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark btn btn-outline-light', style: "width: 100px;" %>
@@ -28,16 +28,10 @@
             <!--管理者ログイン時-->
             <% elsif admin_signed_in? %>
               <li class="nav-item mx-1 pt-2">
-                <%= link_to "商品一覧", class: 'nav-link text-dark btn btn-outline-light' %>
-              </li>
-              <li class="nav-item mx-1 pt-2">
                 <%= link_to "会員一覧",class: 'nav-link text-dark btn btn-outline-light' %>
               </li>
               <li class="nav-item mx-1 pt-2">
-                <%= link_to "注文履歴一覧", class: 'nav-link text-dark btn btn-outline-light' %>
-              </li>
-              <li class="nav-item mx-1 pt-2">
-                <%= link_to "ジャンル一覧", class: 'nav-link text-dark btn btn-outline-light' %>
+                <%= link_to "レビュー一覧", class: 'nav-link text-dark btn btn-outline-light' %>
               </li>
               <li class="nav-item mx-1 pt-2">
                 <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark btn btn-outline-light' %>
@@ -59,8 +53,6 @@
               </li>
             <% end %>
           </ul>
-
-          
         </div>
     </div>
 </header>
