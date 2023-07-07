@@ -10,10 +10,9 @@ Rails.application.routes.draw do
   get 'about' => 'public/homes#about'
   
   scope module: :public do
-    
     resources :customers, only: [:index, :show, :edit, :update]
-    get 'customers/check' => "customers#check"
-    patch 'customers/withdrawal' => "customers#withdrawal"
+    get 'customers/:id/check' => "customers#check", as: 'check'
+    patch 'customers/withdrawal' => "customers#withdrawal", as: 'withdrawal'
   end
   
   #管理者用

@@ -7,15 +7,15 @@ class Public::CustomersController < ApplicationController
   end
 
   def show
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find(current_customer.id)
   end
 
   def edit
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find(current_customer.id)
   end
   
   def update
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find(current_customer.id)
     if @customer.update(customer_params)
       flash[:success] = "会員情報が更新されました。"
       redirect_to customer_path(@customer)
@@ -26,7 +26,6 @@ class Public::CustomersController < ApplicationController
   end
   
   def check
-    
   end
   
   def withdrawal

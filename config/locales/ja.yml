@@ -1,0 +1,11 @@
+ja:
+    activerecord:
+      models:
+        customer: "会員"
+      attributes:
+        customer:
+          nickname: "ニックネーム"
+          introduction: "自己紹介"
+          email: "メールアドレス"
+          encrypted_password: "パスワード"
+
