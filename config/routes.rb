@@ -9,8 +9,11 @@ Rails.application.routes.draw do
   root to:'public/homes#top'
   get 'about' => 'public/homes#about'
   
-  namespace :public do
+  scope module: :public do
     
+    resources :customers, only: [:index, :show, :edit, :update]
+    get 'customers/check' => "customers#check"
+    patch 'customers/withdrawal' => "customers#withdrawal"
   end
   
   #管理者用
