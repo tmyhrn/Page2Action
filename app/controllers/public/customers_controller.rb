@@ -11,11 +11,11 @@ class Public::CustomersController < ApplicationController
   end
 
   def edit
-    @customer = Customer.find(current_customer.id)
+    @customer = Customer.find(params[:id])
   end
   
   def update
-    @customer = Customer.find(current_customer.id)
+    @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       flash[:success] = "会員情報が更新されました。"
       redirect_to customer_path(@customer)
@@ -26,10 +26,11 @@ class Public::CustomersController < ApplicationController
   end
   
   def check
+    @customer = Customer.find(params[:id])
   end
   
   def withdrawal
-    @customer = Customer.find(current_customer.id)
+    @customer = Customer.find(params[:id])
     @customer.update(is_deleted: true)
     reset_session
     flash[:danger] = "ありがとうございました。またのご利用を心よりお待ちしております。"

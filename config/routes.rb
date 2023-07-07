@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :customers, only: [:index, :show, :edit, :update]
     get 'customers/:id/check' => "customers#check", as: 'check'
-    patch 'customers/withdrawal' => "customers#withdrawal", as: 'withdrawal'
+    patch 'customers/:id/withdrawal' => "customers#withdrawal", as: 'withdrawal'
   end
   
   #管理者用
