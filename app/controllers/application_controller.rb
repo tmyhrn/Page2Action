@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   add_flash_types :success, :info, :warning, :danger
   
   def after_sign_in_path_for(resource)
-    about_path
+    customer_path(@customer)
   end
   
   def after_sign_out_path_for(resource)

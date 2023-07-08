@@ -1,7 +1,8 @@
 @use '~bootstrap/scss/bootstrap';
 
+// フッターが少ない時に最下部に
 * {
-  font-family: Yu Mincho; 
+  font-family: Yu Mincho;
 }
 
 body {
@@ -12,4 +13,9 @@ body {
 
 .main {
   flex: 1;
+}
+
+// ページネーション中央揃え
+.pagination {
+  justify-content: center;
 }
