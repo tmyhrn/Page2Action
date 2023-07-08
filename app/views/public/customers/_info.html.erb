@@ -8,10 +8,20 @@
     <th>自己紹介</th>
     <th><%= customer.introduction %></th>
   </tr>
+  <tr>
+    <th>フォロー数</th>
+    <th><%= customer.followings.count %></th>
+  </tr>
+  <tr>
+    <th>フォロワー数</th>
+    <th><%= customer.followers.count %></th>
+  </tr>
 </table>
 
+<% if customer.id == current_customer.id %>
 <div class='row'>
   <%= link_to edit_customer_path(customer), class: "btn btn-outline-secondary btn-block" do %>
-     <i class="fas fa-user-cog"></i>
+     <i class="fas fa-user-cog edit_customer_#{customer.id}"></i>
   <% end %>
 </div>
+<% end %>

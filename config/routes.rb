@@ -10,9 +10,15 @@ Rails.application.routes.draw do
   get 'about' => 'public/homes#about'
   
   scope module: :public do
-    resources :customers, only: [:index, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update] do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
     get 'customers/:id/check' => "customers#check", as: 'check'
     patch 'customers/:id/withdrawal' => "customers#withdrawal", as: 'withdrawal'
+    
+    
   end
   
   #管理者用
@@ -23,6 +29,11 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
+  end
+  
+  # ゲストログイン  
+  devise_scope :customer do
+    post "customers/guest_sign_in", to: "public/sessions#guest_sign_in"
   end
   
   devise_for :users
