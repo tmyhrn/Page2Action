@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get 'customers/:id/check' => "customers#check", as: 'check'
     patch 'customers/:id/withdrawal' => "customers#withdrawal", as: 'withdrawal'
     
+    resources :books
     
   end
   
