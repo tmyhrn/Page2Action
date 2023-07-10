@@ -1,0 +1,15 @@
+<div class="container mt-5 mb-5">
+  <div class="flex">
+    <div class="md-none">
+      <%= image_tag(@book.small_image_url, class: "book-image-l") %>
+    </div>
+    <div class="ml-4 mt-2">
+      <p class="txt-m"> <%= @book.title %></p>
+      <p class="txt-author txt-xs thin-font">著者名：<%= @book.author %></p>
+      <p class="txt-author txt-xs thin-font">概要：<%= @book.item_caption %></p>
+      <div class="mt-5 flex book-page-btn text-center">
+        <div class="mr-3 mb-2"><button class="submit-btn post-review-button txt-xs">レビューを書く</button></div>
+      </div>
+    </div>
+  </div>
+</div>

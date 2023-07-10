@@ -19,7 +19,8 @@ Rails.application.routes.draw do
     patch 'customers/:id/withdrawal' => "customers#withdrawal", as: 'withdrawal'
     
     resources :books
-    
+    get 'books/search', to: "books#search"
+    resources :reviews
   end
   
   #管理者用
@@ -30,6 +31,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :reviews, only: [:index, :show, :destroy]
   end
   
   # ゲストログイン  

@@ -1,10 +1,10 @@
 @use '~bootstrap/scss/bootstrap';
 
-// フッターが少ない時に最下部に
 * {
   font-family: Yu Mincho;
 }
 
+// フッターが少ない時に最下部に
 body {
   display: flex;
   flex-flow: column;
