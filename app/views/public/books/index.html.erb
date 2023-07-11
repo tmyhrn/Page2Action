@@ -13,17 +13,19 @@
       <td></td>
     </tr>
   </thead>
-  
+
   <tbody>
+    <% if @books %>
     <% @books.each do |book| %>
       <tr>
         <td><%= link_to (image_tag(book.medium_image_url)), book.item_url %></td>
         <td><%= book.title %></td>
         <td><%= book.author %></td>
         <td><%= book.sales_date %></td>
-        <td><%= link_to "読みたい本に登録", customers_path %></td>
+        <td><%= link_to "読みたい本に登録", new_review_path %></td>
       </tr>
     <% end %>
+<% end %>
 
   </tbody>
 </table>

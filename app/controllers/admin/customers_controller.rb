@@ -1,6 +1,5 @@
 class Admin::CustomersController < ApplicationController
   before_action :authenticate_admin!
-  before_action :ensure_guest_user, only: [:edit]
   
   def index
     @customers = Customer.page(params[:id]).per(10)

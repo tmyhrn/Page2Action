@@ -9,6 +9,8 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    @book = Book.find_by_isbn(params[:isbn] || @isbn)
+    @review = Review.find(params[:id])
   end
 
   def edit

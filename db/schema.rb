@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_08_031457) do
+ActiveRecord::Schema.define(version: 2023_07_11_110031) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,10 +52,18 @@ ActiveRecord::Schema.define(version: 2023_07_08_031457) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "book2s", primary_key: "isbn", force: :cascade do |t|
+    t.string "title"
+    t.string "author"
+    t.string "url"
+    t.string "image_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
-    t.string "isbn"
     t.datetime "sales_date"
     t.text "item_caption"
     t.text "item_url"
@@ -64,6 +72,7 @@ ActiveRecord::Schema.define(version: 2023_07_08_031457) do
     t.text "large_image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "isbn", null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -85,6 +94,16 @@ ActiveRecord::Schema.define(version: 2023_07_08_031457) do
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "customer_id"
+    t.string "book_id"
+    t.string "star"
+    t.text "impression"
+    t.string "action"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -16,7 +16,17 @@ import "../stylesheets/application";
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+window.$ = window.jQuery = require('jquery');
 
+//ratyの記述
+import Raty from "raty.js"
+window.raty = function(elem,opt) {
+  let raty =  new Raty(elem,opt)
+  raty.init();
+  return raty;
+}
+
+//フラッシュメッセージのフェードアウト
 $(function(){
   setTimeout("$('.notice').fadeOut('slow')", 2000);
 });

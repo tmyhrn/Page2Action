@@ -4,15 +4,19 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
+  #アソシエーション       
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
+  has_many :reviews, dependent: :destroy
   
+  #バリデーション
   validates :nickname, presence: true
   validates :email, presence: true
   validates :encrypted_password, presence: true
   
+  #Active_Storage
   has_one_attached :profile_image
   
   # プロフィール画像
@@ -24,7 +28,7 @@ class Customer < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
   
-  # ステータスが退会済になっている人がログインできないようにする
+  #ステータスが「退会済」になっている人がログインできないようにする
   def active_for_authentication?
     super && (is_deleted == false)
   end
