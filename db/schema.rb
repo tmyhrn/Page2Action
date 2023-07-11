@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_10_055214) do
+ActiveRecord::Schema.define(version: 2023_07_11_110031) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2023_07_10_055214) do
     t.text "large_image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "isbn"
+    t.string "isbn", null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -106,8 +106,6 @@ ActiveRecord::Schema.define(version: 2023_07_10_055214) do
     t.string "action"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", null: false
-    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -124,5 +122,4 @@ ActiveRecord::Schema.define(version: 2023_07_10_055214) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "reviews", "users"
 end

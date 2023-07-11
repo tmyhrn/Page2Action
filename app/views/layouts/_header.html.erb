@@ -24,17 +24,14 @@
                <li class="nav-item mx-1 pt-2">
                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark btn btn-outline-light', style: "width: 100px;" %>
                </li>
-               
-               <div class="form-inline my-2 justify-content-center ml-1">
+               <div class="form-inline">
                  <%= form_tag(new_book_path, method: :get, class: 'form-inline') do %>
                    <div class="row">
                      <div class="col pr-0 mt-1">
                        <%= text_field_tag :title, @title, class: 'form-control', placeholder:'書籍タイトル' %>
                      </div>
                      <div class="col pl-1 mt-1">
-                       <button class="btn btn-success" type="submit">
-                       <i class="fa fa-search" aria-hidden="true"></i>
-                       </button>
+                       <button class="btn btn-success" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                      </div>
                    </div>
                  <% end %>

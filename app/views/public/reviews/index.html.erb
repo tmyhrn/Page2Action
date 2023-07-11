@@ -1,2 +1,25 @@
-<h1>Public::Reviews#index</h1>
-<p>Find me in app/views/public/reviews/index.html.erb</p>
+<div class="container my-4 px-md-0">
+  <div class="col-8 col-sm-5 col-md-4 col-lg-3 col-xl-2 px-1 ml-md-2">
+    <h5 class="text-center ml-md-5 text-nowrap">投稿一覧</h5>
+  </div>
+  <table class='table table-hover table-inverse'>
+    <thead>
+      <tr>
+        <td></td>
+        <td>タイトル</td>
+        <td>著者</td>
+        <td></td>
+      </tr>
+     </thead>
+     <tbody>
+       <% @reviews.each do |review| %>
+       <tr>
+         <td><%=image_tag(review.book.small_image_url, class: "book-image") %></td>
+         <td><%= review.book.title %></td>
+         <td><%= review.book.author %></td>
+         <td><%= link_to "詳細", review_path(review), class: "btn btn-success col-sm-12 font-weight-bold" %></td>
+       </tr>
+       <% end %>
+     </tbody>
+  </table>
+</div>

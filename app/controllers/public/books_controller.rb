@@ -1,45 +1,41 @@
 class Public::BooksController < ApplicationController
-  
+
   def new
     @books = []
-    
     @title = params[:title]
     if @title.present?
       results = RakutenWebService::Books::Book.search({
         title: @title,
       })
-      
       results.each do |result|
         book = Book.new(read(result))
         @books << book
       end
     end
   end
-  
+
   def create
     @book = Book.find_or_initialize_by(isbn: params[:isbn])
-
     unless @book.persisted?
       results = RakutenWebService::Books::Book.search(isbn: @book.isbn)
       @book = Book.new(read(results.first))
       @book.save
-      redirect_to new_review_path
+      redirect_to new_review_path(isbn: @book.isbn)
     end
   end
-  
+
   def index
     if params[:keyword]
       @books = RakutenWebService::Books::Book.search(title: params[:keyword])
     end
   end
-  
+
   def show
-    @book = Book.find_by(params[:id])
-    
+    @book = Book.find_by(isbn: params[:isbn])
   end
-  
+
   private
-  
+
   def read(result)
     title = result["title"]
     author = result["author"]
@@ -60,5 +56,4 @@ class Public::BooksController < ApplicationController
       item_caption: item_caption
     }
   end
-  
 end
