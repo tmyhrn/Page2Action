@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     get 'books/search', to: "books#search"
     resources :reviews do
       resources :review_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
     get 'tagsearches/search', to: 'tagsearches#search'
 

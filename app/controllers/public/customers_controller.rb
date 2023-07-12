@@ -2,7 +2,7 @@ class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
   before_action :ensure_correct_customer, only: [:edit, :update]
   before_action :ensure_guest_user, only: [:edit]
-  
+
   def index
     @customers = Customer.all
   end
@@ -22,7 +22,7 @@ class Public::CustomersController < ApplicationController
       redirect_to customers_path
     end
   end
-  
+
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
@@ -33,11 +33,11 @@ class Public::CustomersController < ApplicationController
       render :edit
     end
   end
-  
+
   def check
     @customer = Customer.find(params[:id])
   end
-  
+
   def withdrawal
     @customer = Customer.find(params[:id])
     @customer.update(is_deleted: true)
@@ -45,25 +45,25 @@ class Public::CustomersController < ApplicationController
     flash[:danger] = "ありがとうございました。またのご利用を心よりお待ちしております。"
     redirect_to root_path
   end
-  
+
   private
-  
+
   def customer_params
     params.require(:customer).permit(:nickname, :introduction, :profile_image, :email, :is_deleted)
   end
-  
+
   def ensure_correct_customer
     @customer = Customer.find(params[:id])
     unless @customer == current_customer
       redirect_to customer_path(current_customer)
     end
   end
-  
+
   def ensure_guest_user
     @customer = Customer.find(params[:id])
     if @customer.email == "guest@example.com"
       redirect_to customer_path(current_customer) , alert: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
-  end 
-  
+  end
+
 end
