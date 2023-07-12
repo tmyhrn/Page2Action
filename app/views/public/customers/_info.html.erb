@@ -16,6 +16,10 @@
     <th>フォロワー数</th>
     <th><%= customer.followers.count %></th>
   </tr>
+  <tr>
+    <th>読書数</th>
+    <th><%= customer.reviews.count %></th>
+  </tr>
 </table>
 
 <% if customer.id == current_customer.id %>

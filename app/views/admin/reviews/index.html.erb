@@ -8,24 +8,22 @@
       <thead>
         <tr class="text-center">
           <th class="bg-light">レビューID</td>
-          <th class="bg-light">ニックネーム</td>
-          <th class="bg-light">メールアドレス</td>
-          <th class="bg-light">ステータス</td>
+          <th class="bg-light">タイトル</td>
+          <th class="bg-light">会員名</td>
+          <th class="bg-light"></td>
+          <th class="bg-light"></td>
         </tr>
         
-        <tr class="text-center">
-          <td></td>
-          <td></td>
-          <td><td>
-          
-        </tr>
-      
-    </thead>
-  </table>
-
-    <div>
-     
-    </div>
-
+        <% @reviews.each do |review| %>
+          <tr class="text-center">
+            <td><%= review.id %></td>
+            <td><%= review.book.title %></td>
+            <td><%= review.customer.nickname %></td>
+            <td><%= link_to "詳細", admin_review_path(review), class: "btn btn-success" %></td>
+            <td><%= link_to "削除", admin_review_path(review), method: :delete, class: "btn btn-danger", data: { confirm: "レビューを削除してもよろしいですか？" } %></td>
+          </tr>
+        <% end %>
+      </thead>
+    </table>
   </div>
 </div>

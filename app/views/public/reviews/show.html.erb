@@ -37,7 +37,7 @@
     <%= form_with model:@review, local: true do |f| %>
       <table class="table table-borderless">
         <tr>
-          <th style="font-size:20px;">星：</th>
+          <th style="font-size:18px;">星：</th>
           <td>
             <div id="star_<%= @review.id %>"></div>
             <script>
@@ -59,17 +59,17 @@
           </td>
         </tr>
         <tr>
-          <th style="font-size:20px;">感想：</th>
-          <td style="font-size:18px;"><%= @review.impression %></td>
+          <th style="font-size:18px;">感想：</th>
+          <td style="font-size:16px;"><%= @review.impression %></td>
         </tr>
         <tr>
-          <th style="font-size:20px;">活かしたいこと：</th>
-          <td style="font-size:18px;"><%= @review.action%></td>
+          <th class="text-nowrap" style="font-size:18px;">活かしたいこと：</th>
+          <td style="font-size:16px;"><%= @review.action%></td>
         </tr>
         <tr>
           <% if @review.customer == current_customer %>
-            <td><%= link_to "編集", edit_review_path, class: "btn btn-success col-sm-5 font-weight-bold" %></td>
-            <td><%= link_to "削除", review_path, method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'col-sm-5 btn btn-danger font-weight-bold'  %></td>
+            <td><%= link_to "編集", edit_review_path, class: "btn btn-success col-sm-7 font-weight-bold" %></td>
+            <td><%= link_to "削除", review_path, method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'col-sm-3 btn btn-danger font-weight-bold'  %></td>
           <% end %>
         </tr>
       </table>
