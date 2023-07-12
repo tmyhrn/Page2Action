@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
     end
     get 'tagsearches/search', to: 'tagsearches#search'
-    
+
   end
 
   #管理者用
