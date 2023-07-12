@@ -2,6 +2,18 @@
   <div class="col-8 col-sm-5 col-md-4 col-lg-3 col-xl-2 px-1 ml-md-2">
     <h5 class="text-center ml-md-5 text-nowrap">投稿一覧</h5>
   </div>
+  <div class="serch_form" >
+    <%= form_with url: tagsearches_search_path, method: :get, local: true do |f| %>
+  <table align="center">
+    <tr>
+      <div class="search_form">
+      <td><%= f.text_field :content %></td>
+      <td><%= f.submit'タグ検索' %></td>
+      </div>
+    </tr> 
+  </table>  
+  <% end %>
+</div>
   <table class='table table-hover table-inverse'>
     <thead>
       <tr>
