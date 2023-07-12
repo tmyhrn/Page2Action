@@ -1,35 +1,42 @@
-<div class="container col-xl-8 col-lg-9 my-4 px-sm-1">
-  <div class="px-1 ml-md-2">
-    <h5 class="bg-light text-center ml-5 mb-4" style="width: 130px;">会員一覧</h5>
-  </div>
-  <div class="mx-auto col-10">
+<div class="container-fluid">
+  <div class="row justify-content-center my-4">
+    <div class="col-xl-8 col-lg-9 col-md-10 col-12">
+      <div class="px-1 ml-md-2">
+        <h5 class="bg-light text-center ml-5 mb-4" style="width: 130px;">会員一覧</h5>
+      </div>
+      <div class="mx-auto">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr class="text-center">
+                <th class="bg-light">会員ID</th>
+                <th class="bg-light">ニックネーム</th>
+                <th class="bg-light">メールアドレス</th>
+                <th class="bg-light">ステータス</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @customers.each do |customer| %>
+                <tr class="text-center">
+                  <td><%= customer.id %></td>
+                  <td class="link-black"><%= link_to customer.nickname, admin_customer_path(customer) %></td>
+                  <td><%= customer.email %></td>
+                  <% if customer.is_deleted == false %>
+                    <td class="text-success"><strong>有効</strong></td>
+                  <% else %>
+                    <td class="text-muted"><strong>退会</strong></td>
+                  <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
 
-    <table class="table table-hover">
-      <thead>
-        <tr class="text-center">
-          <th class="bg-light">会員ID</td>
-          <th class="bg-light">ニックネーム</td>
-          <th class="bg-light">メールアドレス</td>
-          <th class="bg-light">ステータス</td>
-        </tr>
-        <% @customers.each do |customer| %>
-        <tr class="text-center">
-          <td><%= customer.id %></td>
-          <td class="link-black"><%= link_to customer.nickname, admin_customer_path(customer) %></td>
-          <td><%= customer.email %></td>
-          <% if customer.is_deleted == false %>
-            <td class="text-success"><strong>有効</strong></td>
-          <% else %>
-            <td class="text-muted"><strong>退会</strong></td>
-          <% end %>
-        </tr>
-      <% end %>
-    </thead>
-  </table>
+        <div class="d-flex justify-content-center">
+          <%= paginate @customers %>
+        </div>
 
-    <div>
-      <%= paginate @customers %>
+      </div>
     </div>
-
   </div>
 </div>

@@ -1,29 +1,33 @@
-<div class="container col-xl-8 col-lg-9 my-4 px-sm-1">
-  <div class="px-1 ml-md-2">
-    <h5 class="bg-light text-center ml-5 mb-4" style="width: 130px;">レビュー一覧</h5>
-  </div>
-  <div class="mx-auto col-10">
-
-    <table class="table table-hover">
-      <thead>
-        <tr class="text-center">
-          <th class="bg-light">レビューID</td>
-          <th class="bg-light">タイトル</td>
-          <th class="bg-light">会員名</td>
-          <th class="bg-light"></td>
-          <th class="bg-light"></td>
-        </tr>
-        
-        <% @reviews.each do |review| %>
-          <tr class="text-center">
-            <td><%= review.id %></td>
-            <td><%= review.book.title %></td>
-            <td><%= review.customer.nickname %></td>
-            <td><%= link_to "詳細", admin_review_path(review), class: "btn btn-success" %></td>
-            <td><%= link_to "削除", admin_review_path(review), method: :delete, class: "btn btn-danger", data: { confirm: "レビューを削除してもよろしいですか？" } %></td>
-          </tr>
-        <% end %>
-      </thead>
-    </table>
+<div class="container-fluid">
+  <div class="row justify-content-center my-4">
+    <div class="col-md-9 col-lg-8 col-xl-8">
+      <div class="px-1 ml-md-2">
+        <h5 class="bg-light text-center ml-5 mb-4" style="width: 130px;">レビュー一覧</h5>
+      </div>
+      <div class="mx-auto col-12 col-md-10">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr class="text-center">
+                <th class="bg-light">タイトル</th>
+                <th class="bg-light">会員名</th>
+                <th class="bg-light"></th>
+                <th class="bg-light"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @reviews.each do |review| %>
+                <tr class="text-center">
+                  <td><%= review.book.title %></td>
+                  <td><%= review.customer.nickname %></td>
+                  <td><%= link_to "詳細", admin_review_path(review), class: "btn btn-success" %></td>
+                  <td><%= link_to "削除", admin_review_path(review), method: :delete, class: "btn btn-danger", data: { confirm: "レビューを削除してもよろしいですか？" } %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

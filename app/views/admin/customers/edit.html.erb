@@ -1,13 +1,13 @@
 <div class="container my-4 px-sm-1">
-  <div class="px-2 ml-md-5">
+  <div class="px-1">
     <h5 class="bg-light text-center ml-3 mb-4" style="width: 300px;"><%= @customer.nickname %>さんの会員情報編集</h5>
   </div>
-  <div class="col-sm-12 col-md-11 col-lg-10 col-xl-8 px-sm-0 px-md-1 mt-3">
+ <div class="col-sm-12 col-md-9 col-lg-8 col-xl-7 px-sm-0 px-md-1">
     <%= render 'layouts/errors', obj: @customer %>
       <%= form_with model: @customer, url: admin_customer_path do |f| %>
       <form>
         <div class="form-group row ml-3 mb-3">
-          <label class="col-md-3 col-form-label">会員ID</label>
+          <label class="col-md-3 col-form-label font-weight-bold">会員ID</label>
           <div class="col-md-9 form-row y-middle">
             <div class="col-md-4 d-flex align-items-center">
               <%= content_tag :div, @customer.id %>
@@ -16,7 +16,7 @@
         </div>
   
         <div class="form-group row ml-3 mb-3">
-          <label class="col-md-3 col-form-label">ニックネーム</label>
+          <label class="col-md-3 col-form-label font-weight-bold">ニックネーム</label>
           <div class="col-md-9 form-row y-middle">
             <div class="col-md-4 d-flex align-items-center">
               <%= content_tag :div, @customer.nickname %>
@@ -25,7 +25,7 @@
         </div>
   
         <div class="form-group row ml-3 mb-3">
-          <label class="col-md-3 col-form-label">自己紹介</label>
+          <label class="col-md-3 col-form-label font-weight-bold">自己紹介</label>
           <div class="col-md-9 form-row y-middle">
             <div class="col-md-4 d-flex align-items-center">
               <%= content_tag :div, @customer.introduction %>
@@ -34,7 +34,7 @@
         </div>
   
         <div class="form-group row ml-3 mb-3">
-          <label class="col-md-3 col-form-label">メールアドレス</label>
+          <label class="col-md-3 col-form-label font-weight-bold">メールアドレス</label>
           <div class="col-md-9 form-row y-middle">
             <div class="col-md-4 d-flex align-items-center">
               <%= content_tag :div, @customer.email %>
@@ -43,7 +43,7 @@
         </div>
   
         <div class="form-group row ml-3 mb-3">
-          <label class="col-md-3 col-form-label">会員ステータス</label>
+          <label class="col-md-3 col-form-label font-weight-bold">会員ステータス</label>
           <div class="col-md-9 form-row y-middle">
             <div class="col-5  d-flex align-items-center">
               <%= f.radio_button :is_deleted, false %>
