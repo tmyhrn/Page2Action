@@ -27,6 +27,7 @@ class Public::ReviewsController < ApplicationController
   def show
     @review = Review.find(params[:id])
     @book = Book.find_by_isbn(params[:isbn] || @isbn)
+    @review_comment = ReviewComment.new
   end
 
   def edit
