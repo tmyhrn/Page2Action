@@ -11,6 +11,7 @@ class Customer < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :reviews, dependent: :destroy
   has_many :review_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
   #バリデーション
   validates :nickname, presence: true

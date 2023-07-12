@@ -1,0 +1,13 @@
+<% if review.favorited_by?(current_customer) %>
+ <p>
+   <%= link_to review_favorites_path(review), method: :delete, remote: true do %>
+     <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i><%= review.favorites.count %> いいね
+   <% end %>
+ </p>
+<% else %>
+ <p>
+   <%= link_to review_favorites_path(review), method: :post, remote: true do %>
+     ♡<%= review.favorites.count %> いいね
+   <% end %>
+ </p>
+<% end %>
