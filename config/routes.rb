@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       resources :review_comments, only: [:create, :destroy]
     end
     get 'tagsearches/search', to: 'tagsearches#search'
-    
+
   end
 
   #管理者用
