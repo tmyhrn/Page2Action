@@ -9,7 +9,7 @@
         <td></td>
         <td>タイトル</td>
         <td>著者</td>
-        <td></td>
+        <td>レビュー投稿者</td>
       </tr>
      </thead>
      <tbody>
@@ -17,6 +17,7 @@
          <td><%=image_tag(@review.book.small_image_url, class: "book-image") %></td>
          <td><%= @review.book.title %></td>
          <td><%= @review.book.author %></td>
+         <td><%= @review.customer.nickname %></td>
        </tr>
      </tbody>
   </table>
@@ -52,13 +53,15 @@
       </tr>
       <tr>
         <th style="font-size:20px;">活かしたいこと：</th>
-        <td><%= @review.action%></td>
+        <td style="font-size:18px;"><%= @review.action%></td>
       </tr>
       <tr>
+        <% if @review.customer == current_customer %>
         <th>
           <td><%= link_to "編集", edit_review_path, class: "btn btn-success col-sm-5 font-weight-bold" %></td>
           <td><%= link_to "削除", review_path, method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'col-sm-12 mx-0  btn btn-danger font-weight-bold'  %></td>
         </th>
+        <%end%>
     </table>
     <% end %>
   </div>

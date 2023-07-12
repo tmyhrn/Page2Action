@@ -10,7 +10,8 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @book = Book.find_by_isbn(params[:isbn] || @isbn)
-    @review = Review.find(params[:id])
+    @reviews = @customer.reviews
+    @review = Review.find_by(params[:id])
   end
 
   def edit
@@ -52,7 +53,7 @@ class Public::CustomersController < ApplicationController
   end
   
   def ensure_correct_customer
-    @customer = Customer.find(current_customer.id)
+    @customer = Customer.find(params[:id])
     unless @customer == current_customer
       redirect_to customer_path(current_customer)
     end
