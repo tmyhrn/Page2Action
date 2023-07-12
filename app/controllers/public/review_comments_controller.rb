@@ -5,11 +5,13 @@ class Public::ReviewCommentsController < ApplicationController
     comment = current_customer.review_comments.new(review_params)
     comment.review_id = review.id
     comment.save
+    flash[:success] = "コメントを投稿しました！"
     redirect_to review_path(review)
   end
   
   def destroy
     ReviewComment.find(params[:id]).destroy
+    flash[:success] = "コメントを削除しました！"
     redirect_to review_path(params[:review_id])
   end
   
