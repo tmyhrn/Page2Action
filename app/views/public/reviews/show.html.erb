@@ -28,47 +28,83 @@
      </tbody>
   </table>
 
-  <div class="row mr-5">
+  <div class="row">
+    <div class="col-md-7">
     <%= form_with model:@review, local: true do |f| %>
-    <table class="table table-borderless">
-      <tr>
-        <th style="font-size:20px;">星：</th>
-        <td>
-          <div id="star_<%= @review.id %>"></div>
-          <script>
-          $(document).on('turbolinks:load', function() {
-            let elem = document.querySelector('#star_<%= @review.id %>');
-            if (elem == null) return;
-
-            elem.innerHTML = "";
-              let opt = {
-                starOn: "<%= asset_path('star-on.png') %>",
-                starOff: "<%= asset_path('star-off.png') %>",
-                starHalf: "<%= asset_path('star-half.png') %>",
-                score: "<%= @review.star %>",
-                readOnly: true,
-              };
-              raty(elem, opt);
-            });
-          </script>
-        </td>
-      </tr>
-      <tr>
-        <th style="font-size:20px;">感想：</th>
-        <td style="font-size:18px;"><%= @review.impression %></td>
-      </tr>
-      <tr>
-        <th style="font-size:20px;">活かしたいこと：</th>
-        <td style="font-size:18px;"><%= @review.action%></td>
-      </tr>
-      <tr>
-        <% if @review.customer == current_customer %>
-        <th>
-          <td><%= link_to "編集", edit_review_path, class: "btn btn-success col-sm-5 font-weight-bold" %></td>
-          <td><%= link_to "削除", review_path, method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'col-sm-12 mx-0  btn btn-danger font-weight-bold'  %></td>
-        </th>
-        <%end%>
-    </table>
+      <table class="table table-borderless">
+        <tr>
+          <th style="font-size:20px;">星：</th>
+          <td>
+            <div id="star_<%= @review.id %>"></div>
+            <script>
+            $(document).on('turbolinks:load', function() {
+              let elem = document.querySelector('#star_<%= @review.id %>');
+              if (elem == null) return;
+  
+              elem.innerHTML = "";
+                let opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  score: "<%= @review.star %>",
+                  readOnly: true,
+                };
+                raty(elem, opt);
+              });
+            </script>
+          </td>
+        </tr>
+        <tr>
+          <th style="font-size:20px;">感想：</th>
+          <td style="font-size:18px;"><%= @review.impression %></td>
+        </tr>
+        <tr>
+          <th style="font-size:20px;">活かしたいこと：</th>
+          <td style="font-size:18px;"><%= @review.action%></td>
+        </tr>
+        <tr>
+          <% if @review.customer == current_customer %>
+          <th>
+            <td><%= link_to "編集", edit_review_path, class: "btn btn-success col-sm-5 font-weight-bold" %></td>
+            <td><%= link_to "削除", review_path, method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'col-sm-12 mx-0  btn btn-danger font-weight-bold'  %></td>
+          </th>
+          <% end %>
+      </table>
     <% end %>
+    <%= form_with model: [@review, @review_comment] do |f| %>
+      <%= f.text_area :comment, rows: '4', placeholder: "コメントをここに", class: "form-control col-md-10" %>
+      <%= f.submit "送信する", class: "btn btn-primary mt-2" %>
+    <% end %>
+    </div>
+    
+    <div class="row pb-5">
+      <div class="col">
+        <table class='table table-hover table-inverse'>
+          <thead>
+            <tr>
+            <td></td>
+            <td>ユーザー名</td>
+            <td>コメント</td>
+            <td></td>
+          </tr>
+         </thead>
+         <tbody>
+           <% @review.review_comments.each do |review_comment| %>
+           <tr>
+             <td><%= image_tag review_comment.customer.get_profile_image(50,50) %></td>
+             <td class="text-center"><%= review_comment.customer.nickname %></td>
+             <td class="text-center"><%= review_comment.comment %></td>
+             <td>
+               <% if review_comment.customer == current_customer %>
+                 <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), method: :delete %>
+               <% end %>
+             </td>
+           </tr>
+           <% end %>
+         </tbody>
+        </table>
+      </div>
+    </div>
+   </div>
   </div>
 </div>
