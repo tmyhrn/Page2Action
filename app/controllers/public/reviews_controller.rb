@@ -11,7 +11,7 @@ class Public::ReviewsController < ApplicationController
     @review.customer_id = current_customer.id
     if @review.save
       flash[:success] = "レビューが作成されました！"
-      redirect_to reviews_path
+      redirect_to customer_path(current_customer)
     else
       @isbn = params[:isbn]
       render :new
@@ -21,6 +21,7 @@ class Public::ReviewsController < ApplicationController
   def index
     @reviews = Review.all
     @book = Book.find_by_isbn(params[:isbn] || @isbn)
+
   end
 
   def show

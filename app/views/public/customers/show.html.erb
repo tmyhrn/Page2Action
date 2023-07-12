@@ -16,14 +16,17 @@
               </tr>
           </thead>
           <tbody>
+            <% @reviews.each do |review| %>
               <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td><%=image_tag(review.book.small_image_url, class: "book-image") %></td>
+                  <td><%= review.book.title %></td>
+                  <td><%= review.book.author %></td>
+                  <td><%=link_to "詳細", review_path(review)%></td>
               </tr>
+            <% end %>
           </tbody>
       </table>
     </div>
   </div>
+</div>
 </div>
