@@ -2,25 +2,27 @@
   <div class="col-8 col-sm-5 col-md-4 col-lg-3 col-xl-2 px-1 ml-md-2">
     <h5 class="text-center ml-md-5 text-nowrap">新規レビュー</h5>
   </div>
-  <table class='table table-hover table-inverse'>
-    <thead>
-      <tr>
-        <td></td>
-        <td>タイトル</td>
-        <td>著者</td>
-      </tr>
-     </thead>
-     <tbody>
-       <tr>
-         <td><%= image_tag(@book.small_image_url, class: "book-image") %></td>
-         <td><%= @book.title %></td>
-         <td><%= @book.author %></td>
-       </tr>
-     </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th>タイトル</th>
+          <th>著者</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= image_tag(@book.small_image_url, class: "book-image") %></td>
+          <td><%= @book.title %></td>
+          <td><%= @book.author %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-  <%= form_with(model: [@review], local:true) do |f| %>
-    <div class="form-group  mb-4" id="star">
+  <%= form_with(model: [@review], local: true) do |f| %>
+    <div class="form-group mb-4" id="star">
       <label for="star" class="col-sm-4 col-form-label">星</label>
       <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
       <div id="post_raty"></div>
@@ -29,7 +31,7 @@
       $(document).on('turbolinks:load', function() {
         let elem = document.querySelector('#post_raty');
         if (elem == null) return;
-        elem.innerHTML = ""
+        elem.innerHTML = "";
         let opt = {
           starOn: "<%= asset_path('star-on.png') %>",
           starOff: "<%= asset_path('star-off.png') %>",
@@ -44,22 +46,22 @@
       <label for="category" class="col-sm-4 col-form-label">タグ</label>
       <%= f.text_field :category, class: 'form-control' %>
     </div>
-    
+
     <div class="form-group mb-4">
       <label for="impression" class="col-sm-4 col-form-label">感想</label>
       <%= f.text_area :impression, class: 'form-control' %>
     </div>
-  
-    <div class="form-group">
-      <label for="action" class="col-sm-3 col-form-label">活かしたいこと</label>
+
+    <div class="form-group mb-4">
+      <label for="action" class="col-sm-4 col-form-label">活かしたいこと</label>
       <%= f.text_field :action, class: 'form-control' %>
     </div>
-  
-    <div class="actions text-center px-5 ">
+
+    <div class="actions text-center px-5">
       <div class="py-5">
         <%= f.hidden_field :book_id, value: @book.id %>
-        <%= f.submit '投稿', class: "btn btn-success col-sm-2 font-weight-bold", style: "text-align: center;" %>
+        <%= f.submit '投稿', class: "btn btn-success col-sm-4 font-weight-bold" %>
       </div>
     </div>
-    <% end %>
-  </div>
+  <% end %>
+</div>
