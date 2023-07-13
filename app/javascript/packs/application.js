@@ -11,7 +11,7 @@ import "channels"
 import "jquery";
 import "popper.js";
 import "bootstrap";
-import "../stylesheets/application"; 
+import "../stylesheets/application";
 
 Rails.start()
 Turbolinks.start()
@@ -21,10 +21,12 @@ window.$ = window.jQuery = require('jquery');
 //ratyの記述
 import Raty from "raty.js"
 window.raty = function(elem,opt) {
-  let raty =  new Raty(elem,opt)
+  let raty = new Raty(elem,opt)
+  //var raty =  new Raty(elem,opt)
   raty.init();
   return raty;
 }
+
 
 //フラッシュメッセージのフェードアウト
 $(function(){

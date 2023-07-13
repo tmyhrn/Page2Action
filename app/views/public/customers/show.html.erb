@@ -1,32 +1,33 @@
-<div class='container px-5 px-sm-0'>
-  <div class='row px-1 py-4 ml-md-3'>
-    <div class='col-md-3 py-3'>
+<div class="container px-sm-0">
+  <div class="row px-1 py-4 ml-md-3">
+    <div class="col-md-3 py-3">
       <h3 class="mb-4">登録情報</h3>
       <%= render 'info', customer: @customer %>
     </div>
-    <div class='col-md-8 offset-md-1 p-3'>
+    <div class="col-md-8 offset-md-1 p-3">
       <h3>読んだ本一覧</h3>
-      <table class="table table-hover text-center">
+      <div class="table-responsive">
+        <table class="table table-hover text-center">
           <thead>
-              <tr>
-                  <td></td>
-                  <td>タイトル</td>
-                  <td>著者</td>
-                  <td></td>
-              </tr>
+            <tr>
+              <th></th>
+              <th>タイトル</th>
+              <th>著者</th>
+              <th></th>
+            </tr>
           </thead>
           <tbody>
             <% @reviews.each do |review| %>
               <tr>
-                  <td><%=image_tag(review.book.small_image_url, class: "book-image") %></td>
-                  <td><%= review.book.title %></td>
-                  <td><%= review.book.author %></td>
-                  <td><%=link_to "詳細", review_path(review)%></td>
+                <td><%= image_tag(review.book.small_image_url, class: "book-image") %></td>
+                <td><%= review.book.title %></td>
+                <td><%= review.book.author %></td>
+                <td><%= link_to "詳細", review_path(review) %></td>
               </tr>
             <% end %>
           </tbody>
-      </table>
+        </table>
+      </div>
     </div>
   </div>
-</div>
 </div>
