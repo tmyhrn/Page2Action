@@ -1,0 +1,65 @@
+<div class="container-fluid">
+  <div class="row justify-content-center my-4">
+    <div class="col-xl-8 col-lg-9 col-md-10 col-12">
+      
+      <div class="px-1 ml-md-2">
+        <h5 class="bg-light font-weight-bold text-center ml-5 mb-4" style="width: 200px;">いいね数ランキング</h5>
+      </div>
+      <div class="mx-auto">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr class="text-center">
+                <th class="bg-light">ランキング</th>
+                <th class="bg-light">ニックネーム</th>
+                <th class="bg-light">書籍</th>
+                <th class="bg-light">いいね数</th>
+                <th class="bg-light"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @review_favorite_ranks.each.with_index(1) do |review, i| %>
+                <tr class="text-center">
+                  <td>第<%= i %>位</td>
+                  <td><%= review.customer.nickname %></td>
+                  <td><%= review.book.title %></td>
+                  <td><%= review.favorites.count %></td>
+                  <td><%= link_to "詳細", review_path(review), class:"btn btn-success" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="px-1 ml-md-2">
+          <h5 class="bg-light font-weight-bold text-center ml-5 mb-4" style="width: 200px;">コメント数ランキング</h5>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr class="text-center">
+                <th class="bg-light">ランキング</th>
+                <th class="bg-light">ニックネーム</th>
+                <th class="bg-light">書籍</th>
+                <th class="bg-light">コメント数</th>
+                <th class="bg-light"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @review_review_comment_ranks.each.with_index(1) do |review, i| %>
+                <tr class="text-center">
+                  <td>第<%= i %>位</td>
+                  <td class="text-center"><%= review.customer.nickname %></td>
+                  <td class="text-center"><%= review.book.title %></td>
+                  <td class="text-center"><%= review.review_comments.count %></td>
+                  <td class="text-center"><%= link_to "詳細", review_path(review), class:"btn btn-success" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

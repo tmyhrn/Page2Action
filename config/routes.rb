@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
     end
     get 'tagsearches/search', to: 'tagsearches#search'
+    get 'ranks' => 'ranks#rank', as: "rank_favorite"
 
   end
 
