@@ -2,7 +2,7 @@
   <div class="row justify-content-center my-4">
     <div class="col-xl-8 col-lg-9 col-md-10 col-12">
       <div class="px-1 ml-md-2">
-        <h5 class="bg-light text-center ml-5 mb-4" style="width: 130px;">会員一覧</h5>
+        <h5 class="bg-light text-center font-weight-bold ml-5 mb-4" style="width: 130px;">会員一覧</h5>
       </div>
       <div class="mx-auto">
         <div class="table-responsive">
@@ -24,7 +24,7 @@
                   <% if customer.is_deleted == false %>
                     <td class="text-success"><strong>有効</strong></td>
                   <% else %>
-                    <td class="text-muted"><strong>退会</strong></td>
+                    <td class="text-muted"><strong>利用停止</strong></td>
                   <% end %>
                 </tr>
               <% end %>
