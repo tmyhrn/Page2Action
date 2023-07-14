@@ -8,6 +8,7 @@
     </tr>
   </thead>
   <tbody>
+    <%= link_to 'いいね・コメントランキング', rank_path %> 
     <% customers.each do |customer| %>
       <tr>
         <td><%= image_tag customer.get_profile_image(70,70) %></td>

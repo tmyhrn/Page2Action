@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
+  
+  root to:'public/homes#top'
+  get 'about' => 'public/homes#about'
 
   #会員用
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
-
-  root to:'public/homes#top'
-  get 'about' => 'public/homes#about'
 
   scope module: :public do
     resources :customers, only: [:index, :show, :edit, :update] do
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
     end
     get 'tagsearches/search', to: 'tagsearches#search'
-    get 'ranks' => 'ranks#rank', as: "rank_favorite"
+    get 'ranks' => 'ranks#rank', as: "rank"
 
   end
 
