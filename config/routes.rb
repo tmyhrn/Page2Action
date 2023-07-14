@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  #共通
   root to:'public/homes#top'
   get 'about' => 'public/homes#about'
 
@@ -20,11 +21,14 @@ Rails.application.routes.draw do
 
     resources :books
     get 'books/search', to: "books#search"
+    
     resources :reviews do
       resources :review_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
+    
     get 'tagsearches/search', to: 'tagsearches#search'
+    
     get 'ranks' => 'ranks#rank', as: "rank"
 
   end
@@ -44,7 +48,6 @@ Rails.application.routes.draw do
   devise_scope :customer do
     post "customers/guest_sign_in", to: "public/sessions#guest_sign_in"
   end
-
-  devise_for :users
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
