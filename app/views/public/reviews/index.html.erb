@@ -34,12 +34,12 @@
             <td><%= review.customer.nickname %></td>
             <td>
               <div id="star_<%= review.id %>"></div>
-                <script>
-                $(document).on('turbolinks:load', function() {
-                  let elem = document.querySelector('#star_<%= review.id %>');
-                  if (elem == null) return;
-                  
-                  elem.innerHTML = "";
+              <script>
+              $(document).on('turbolinks:load', function() {
+                let elem = document.querySelector('#star_<%= review.id %>');
+                if (elem == null) return;
+                
+                elem.innerHTML = "";
                   let opt = {  
                     starOn: "<%= asset_path('star-on.png') %>",
                     starOff: "<%= asset_path('star-off.png') %>",
@@ -49,7 +49,7 @@
                   };
                   raty(elem, opt);
                 });
-                </script>
+              </script>
             </td>
             <td><%= link_to "詳細", review_path(review), class: "btn btn-success btn-block font-weight-bold" %></td>
           </tr>
