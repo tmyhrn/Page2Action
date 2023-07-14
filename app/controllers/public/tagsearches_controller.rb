@@ -1,7 +1,9 @@
 class Public::TagsearchesController < ApplicationController
   
-  @model = Review
-  @word = params[:content]
-  @reviews = Review.where("category LIKE?","%#{@word}%")
-  render "public/tagsearches/tagsearch"
+  def search
+    @word = params[:content]
+    @reviews = Review.where("category LIKE?","%#{@word}%")
+  render "public/tagsearches/tagsearch"  
+  end
+  
 end
