@@ -21,7 +21,15 @@ class Public::ReviewsController < ApplicationController
   def index
     @reviews = Review.all
     @book = Book.find_by_isbn(params[:isbn] || @isbn)
-
+     if params[:latest]
+       @reviews = Review.latest
+     elsif params[:old]
+       @reviews = Review.old
+     elsif params[:star_count]
+       @reviews = Review.star_count
+     else
+       @reviews = Review.all
+     end
   end
 
   def show

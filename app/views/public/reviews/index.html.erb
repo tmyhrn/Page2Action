@@ -18,16 +18,39 @@
           <th>タイトル</th>
           <th>著者</th>
           <th>投稿者</th>
+          <th>評価</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
+        <%= link_to '新しい順', reviews_path(latest: "true") %>
+        |<%= link_to '古い順', reviews_path(old: "true") %>
+        |<%= link_to '評価の高い順', reviews_path(star_count: "true") %>
         <% @reviews.each do |review| %>
           <tr>
             <td><%= image_tag(review.book.small_image_url, class: "book-image") %></td>
             <td><%= review.book.title %></td>
             <td><%= review.book.author %></td>
             <td><%= review.customer.nickname %></td>
+            <td>
+              <div id="star_<%= review.id %>"></div>
+                <script>
+                $(document).on('turbolinks:load', function() {
+                  let elem = document.querySelector('#star_<%= review.id %>');
+                  if (elem == null) return;
+                  
+                  elem.innerHTML = "";
+                  let opt = {  
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    score: "<%= review.star %>",
+                    readOnly: true,
+                  };
+                  raty(elem, opt);
+                });
+                </script>
+            </td>
             <td><%= link_to "詳細", review_path(review), class: "btn btn-success btn-block font-weight-bold" %></td>
           </tr>
         <% end %>
