@@ -51,14 +51,16 @@ class Public::CustomersController < ApplicationController
   def customer_params
     params.require(:customer).permit(:nickname, :introduction, :profile_image, :email, :is_deleted)
   end
-
+  
+  #他人のプロフィールを編集できないようにする
   def ensure_correct_customer
     @customer = Customer.find(params[:id])
     unless @customer == current_customer
       redirect_to customer_path(current_customer)
     end
   end
-
+  
+  #ゲストがプロフィール画面を編集できないように
   def ensure_guest_user
     @customer = Customer.find(params[:id])
     if @customer.email == "guest@example.com"
