@@ -23,19 +23,13 @@ class Public::BooksController < ApplicationController
       redirect_to new_review_path(isbn: @book.isbn)
     end
   end
-
-  def index
-    if params[:keyword]
-      @books = RakutenWebService::Books::Book.search(title: params[:keyword])
-    end
-  end
-
+  
   def show
     @book = Book.find_by(isbn: params[:isbn])
   end
 
   private
-
+  
   def read(result)
     title = result["title"]
     author = result["author"]
