@@ -1,7 +1,12 @@
 <footer class="bg-dark text-white d-flex align-items-center justify-content-center" style="height: 80px;">
   <div class="container">
-    <div class="text-center" style="font-size: 20px;">
-      Page2Action
+    <div class="row">
+      <div class="col-6 offset-3 text-center" style="font-size:20px;">
+        Page2Action
+      </div>
+      <div class="col-3 text-right">
+        管理者の方は<%= link_to "こちら", new_admin_session_path %>
+      </div>
     </div>
   </div>
 </footer>
