@@ -15,6 +15,7 @@ class Customer < ApplicationRecord
   
   #バリデーション
   validates :nickname, presence: true
+  validates :introduction, length: { in: 0..15 }
   validates :email, presence: true
   validates :encrypted_password, presence: true
 

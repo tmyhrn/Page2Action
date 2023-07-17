@@ -22,7 +22,7 @@
           <td><%= @review.book.author %></td>
           <td>
             <% if @review.category.present? %>
-              <%= link_to @review.category, tagsearches_search_path %>
+              <%= link_to @review.category, tagsearches_search_path(content:@review.category) %>
             <% end %>
           </td>
           <td><%= @review.customer.nickname %></td>

@@ -10,7 +10,6 @@
           <th></th>
           <th>タイトル</th>
           <th>著者</th>
-          <th>タグ</th>
           <th>レビュー投稿者</th>
           <th></th>
         </tr>
@@ -20,11 +19,6 @@
           <td><%=image_tag(@review.book.small_image_url, class: "book-image") %></td>
           <td><%= @review.book.title %></td>
           <td><%= @review.book.author %></td>
-          <td>
-            <% if @review.category.present? %>
-              <%= link_to @review.category, tagsearches_search_path %>
-            <% end %>
-          </td>
           <td><%= @review.customer.nickname %></td>
           <td><%= link_to "削除", admin_review_path, method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'col-9 btn btn-danger font-weight-bold'  %></td>
         </tr>
