@@ -56,11 +56,12 @@ class Public::CustomersController < ApplicationController
   def ensure_correct_customer
     @customer = Customer.find(params[:id])
     unless @customer == current_customer
+      flash[:alert] = "他の会員様のプロフィール変更はできません！"
       redirect_to customer_path(current_customer)
     end
   end
   
-  #ゲストがプロフィール画面を編集できないように
+  #ゲストがプロフィールを編集できないように
   def ensure_guest_user
     @customer = Customer.find(params[:id])
     if @customer.email == "guest@example.com"
