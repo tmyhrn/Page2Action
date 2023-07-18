@@ -20,6 +20,9 @@ class Public::ReviewsController < ApplicationController
 
   def index
     @reviews = Review.all
+    if params[:star].present?
+      @reviews = Review.where(star: params[:star])
+    end
     @book = Book.find_by_isbn(params[:isbn] || @isbn)
      if params[:latest]
        @reviews = Review.latest
