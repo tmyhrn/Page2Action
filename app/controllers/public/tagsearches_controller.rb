@@ -1,4 +1,5 @@
 class Public::TagsearchesController < ApplicationController
+  before_action :authenticate_customer!
   
   def search
     @word = params[:content]

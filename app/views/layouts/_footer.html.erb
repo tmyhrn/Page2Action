@@ -5,7 +5,9 @@
         Page2Action
       </div>
       <div class="col-3 text-right">
-        管理者の方は<%= link_to "こちら", new_admin_session_path %>
+        <% unless admin_signed_in? %>
+          管理者の方は<%= link_to "こちら", new_admin_session_path %>
+        <% end %>
       </div>
     </div>
   </div>
