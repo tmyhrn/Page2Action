@@ -1,5 +1,6 @@
 class Public::BooksController < ApplicationController
 
+  #書籍検索結果の表示
   def new
     @books = []
     @title = params[:title]
@@ -12,8 +13,10 @@ class Public::BooksController < ApplicationController
         @books << book
       end
     end
+    @books = Kaminari.paginate_array(@books).page(params[:page]).per(5)
   end
 
+  #検索結果をISBNで保存
   def create
     @book = Book.find_or_initialize_by(isbn: params[:isbn])
     unless @book.persisted?
@@ -24,12 +27,14 @@ class Public::BooksController < ApplicationController
     end
   end
   
+  #本の詳細
   def show
     @book = Book.find_by(isbn: params[:isbn])
   end
 
   private
   
+  #楽天ブックス書籍検索APIについてのカラム記述
   def read(result)
     title = result["title"]
     author = result["author"]

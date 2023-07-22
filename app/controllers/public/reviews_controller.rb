@@ -33,7 +33,7 @@ class Public::ReviewsController < ApplicationController
      elsif params[:star_count]
        @reviews = Review.star_count
      else
-       @reviews = Review.all
+       @reviews = Review.page(params[:page]).per(4)
      end
   end
 
