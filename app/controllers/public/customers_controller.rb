@@ -4,13 +4,13 @@ class Public::CustomersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def index
-    @customers = Customer.all
+    @customers = Customer.page(params[:page]).per(4)
   end
 
   def show
     @customer = Customer.find(params[:id])
     @book = Book.find_by_isbn(params[:isbn] || @isbn)
-    @reviews = @customer.reviews
+    @reviews = @customer.reviews.page(params[:page]).per(3)
     @review = Review.find_by(params[:id])
   end
 

@@ -19,7 +19,6 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.all
     @book = Book.find_by_isbn(params[:isbn] || @isbn)
      if params[:latest]
        @reviews = Review.latest
@@ -28,7 +27,7 @@ class Public::ReviewsController < ApplicationController
      elsif params[:star_count]
        @reviews = Review.star_count
      else
-       @reviews = Review.all
+       @reviews = Review.page(params[:page]).per(4)
      end
   end
 
