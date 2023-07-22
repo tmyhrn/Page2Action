@@ -1,4 +1,6 @@
 class Public::ReviewsController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :ensure_correct_customer_review, only: [:edit, :update]
 
   def new
     @review = Review.new
@@ -19,6 +21,10 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
+    @reviews = Review.all
+    if params[:star].present?
+      @reviews = Review.where(star: params[:star])
+    end
     @book = Book.find_by_isbn(params[:isbn] || @isbn)
      if params[:latest]
        @reviews = Review.latest
@@ -64,6 +70,15 @@ class Public::ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:customer_id, :book_id, :star, :category, :impression, :action)
+  end
+  
+  #他の人がレビュー編集できないようにする
+  def ensure_correct_customer_review
+    @review = Review.find(params[:id])
+    unless @review.customer == current_customer
+      flash[:alert] = "他の会員様のレビュー編集はできません！"
+      redirect_to review_path(@review)
+    end
   end
 
 end
