@@ -71,7 +71,7 @@ class Public::ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:customer_id, :book_id, :star, :category, :impression, :action)
   end
-  
+
   #他の人がレビュー編集できないようにする
   def ensure_correct_customer_review
     @review = Review.find(params[:id])
