@@ -4,7 +4,7 @@ class Public::CustomersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def index
-    @customers = Customer.page(params[:page]).per(4)
+    @customers = Customer.where(is_deleted: true).page(params[:page]).per(4)
   end
 
   def show
@@ -51,7 +51,7 @@ class Public::CustomersController < ApplicationController
   def customer_params
     params.require(:customer).permit(:nickname, :introduction, :profile_image, :email, :is_deleted)
   end
-  
+
   #他人のプロフィールを編集できないようにする
   def ensure_correct_customer
     @customer = Customer.find(params[:id])
@@ -60,7 +60,7 @@ class Public::CustomersController < ApplicationController
       redirect_to customer_path(current_customer)
     end
   end
-  
+
   #ゲストがプロフィールを編集できないように
   def ensure_guest_user
     @customer = Customer.find(params[:id])
