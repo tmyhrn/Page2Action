@@ -21,19 +21,18 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
+    @book = Book.find_by_isbn(params[:isbn] || @isbn)
     if params[:star].present?
       @reviews = Review.where(star: params[:star])
     end
-    @book = Book.find_by_isbn(params[:isbn] || @isbn)
-     if params[:latest]
-       @reviews = Review.latest.page(params[:page]).per(4)
-     elsif params[:old]
-       @reviews = Review.old.page(params[:page]).per(4)
-     elsif params[:star_count]
-       @reviews = Review.star_count.page(params[:page]).per(4)
-     else
-       @reviews = Review.page(params[:page]).per(4)
-     end
+    if params[:latest]
+      @reviews = Review.latest.page(params[:page]).per(4)
+    elsif params[:old]
+      @reviews = Review.old.page(params[:page]).per(4)
+    elsif params[:star_count]
+      @reviews = Review.star_count.page(params[:page]).per(4)
+    end
+    @reviews = Review.joins(:customer).where(customers: { is_deleted: false }).page(params[:page]).per(4)
   end
 
   def show

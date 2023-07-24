@@ -49,6 +49,16 @@ class Customer < ApplicationRecord
   def following?(customer)
     followings.include?(customer)
   end
+  
+  # 会員ステータスが「有効」の場合のフォロワー数
+  def active_followers_count
+    followers.where(is_deleted: false).count
+  end
+
+  # 会員ステータスが「有効」の場合のフォロー数
+  def active_followings_count
+    followings.where(is_deleted: false).count
+  end
 
   #ゲストログイン関連
   def self.guest
