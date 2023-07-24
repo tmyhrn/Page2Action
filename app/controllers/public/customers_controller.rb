@@ -2,6 +2,7 @@ class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
   before_action :ensure_correct_customer, only: [:edit, :update]
   before_action :ensure_guest_user, only: [:edit]
+  before_action :ensure_active_customer, only: [:show, :edit, :update, :destroy]
 
   def index
     @customers = Customer.where(is_deleted: false).page(params[:page]).per(4)
@@ -66,6 +67,15 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     if @customer.email == "guest@example.com"
       redirect_to customer_path(current_customer) , alert: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    end
+  end
+  
+  #退会済の会員を見られないようにする
+  def ensure_active_customer
+    @customer = Customer.find(params[:id])
+    if @customer.is_deleted?
+      flash[:alert] = "退会済です!"
+      redirect_to customers_path
     end
   end
 

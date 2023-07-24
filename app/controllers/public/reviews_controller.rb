@@ -1,6 +1,7 @@
 class Public::ReviewsController < ApplicationController
   before_action :authenticate_customer!
   before_action :ensure_correct_customer_review, only: [:edit, :update]
+  before_action :ensure_active_customer, only: [:show, :edit, :update, :destroy]
 
   def new
     @review = Review.new
@@ -76,6 +77,15 @@ class Public::ReviewsController < ApplicationController
     unless @review.customer == current_customer
       flash[:alert] = "他の会員様のレビュー編集はできません！"
       redirect_to review_path(@review)
+    end
+  end
+  
+  #退会済の会員の投稿を見られないようにする
+  def ensure_active_customer
+    @review = Review.find(params[:id])
+    if @review.customer.is_deleted?
+      flash[:alert] = "退会済の方の投稿は見ることができません!"
+      redirect_to reviews_path
     end
   end
 
