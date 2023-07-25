@@ -27,10 +27,10 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-      flash[:success] = "会員情報が更新されました。"
+      flash[:success] = "会員情報が更新されました！"
       redirect_to customer_path(@customer)
     else
-      flash.now[:danger] = "未記入項目があります。"
+      flash.now[:danger] = "未記入項目があります！"
       render :edit
     end
   end
@@ -53,7 +53,7 @@ class Public::CustomersController < ApplicationController
     params.require(:customer).permit(:nickname, :introduction, :profile_image, :email, :is_deleted)
   end
 
-  #他人のプロフィールを編集できないようにする
+  # 他人のプロフィールを編集できないようにする
   def ensure_correct_customer
     @customer = Customer.find(params[:id])
     unless @customer == current_customer
@@ -62,15 +62,15 @@ class Public::CustomersController < ApplicationController
     end
   end
 
-  #ゲストがプロフィールを編集できないように
+  # ゲストがプロフィールを編集できないように
   def ensure_guest_user
     @customer = Customer.find(params[:id])
     if @customer.email == "guest@example.com"
-      redirect_to customer_path(current_customer) , alert: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      redirect_to customer_path(current_customer) , alert: "ゲストユーザーはプロフィール編集画面へ遷移できません！"
     end
   end
   
-  #退会済の会員を見られないようにする
+  # 退会済の会員を見られないようにする
   def ensure_active_customer
     @customer = Customer.find(params[:id])
     if @customer.is_deleted?

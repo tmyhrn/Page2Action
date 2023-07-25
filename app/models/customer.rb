@@ -4,7 +4,7 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  #アソシエーション
+  # アソシエーション
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :followed
@@ -13,12 +13,12 @@ class Customer < ApplicationRecord
   has_many :review_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   
-  #バリデーション
+  # バリデーション
   validates :nickname, presence: true
   validates :email, presence: true
   validates :encrypted_password, presence: true
 
-  #Active_Storage
+  # Active_Storage
   has_one_attached :profile_image
 
   # プロフィール画像
@@ -30,7 +30,7 @@ class Customer < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
-  #ステータスが「退会済」になっている人がログインできないようにする
+  # ステータスが「退会済」になっている人がログインできないようにする
   def active_for_authentication?
     super && (is_deleted == false)
   end
@@ -60,7 +60,7 @@ class Customer < ApplicationRecord
     followings.where(is_deleted: false).count
   end
 
-  #ゲストログイン関連
+  # ゲストログイン関連
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |customer|
       customer.password = SecureRandom.urlsafe_base64

@@ -27,9 +27,10 @@
   </div>
 
   <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-12">
       <%= form_with model:@review, local: true do |f| %>
         <table class="table table-borderless">
+          <!--星の表示-->
           <tr>
             <th style="font-size:18px;">星：</th>
             <td>
@@ -52,10 +53,12 @@
               </script>
             </td>
           </tr>
+          <!--感想の表示-->
           <tr>
             <th style="font-size:18px;">感想：</th>
             <td style="font-size:16px;"><%= @review.impression %></td>
           </tr>
+          <!--活かしたいことの表示-->
           <tr>
             <th class="text-nowrap" style="font-size:18px;">活かしたいこと：</th>
             <td style="font-size:16px;"><%= @review.action%></td>

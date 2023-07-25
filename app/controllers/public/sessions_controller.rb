@@ -12,6 +12,7 @@ class Public::SessionsController < Devise::SessionsController
     root_path
   end
   
+  # ゲストログイン
   def guest_sign_in
     customer = Customer.guest
     sign_in customer

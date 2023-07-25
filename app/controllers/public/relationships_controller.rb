@@ -12,11 +12,13 @@ class Public::RelationshipsController < ApplicationController
     redirect_to request.referer  
   end
   
+  # フォローしている会員を取得
   def following
     customer = Customer.find(params[:customer_id])
     @customers = customer.followings
   end
 
+  # フォロー
   def followers
     customer = Customer.find(params[:customer_id])
     @customers = customer.followers
