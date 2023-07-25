@@ -1,0 +1,33 @@
+<div class="px-1 ml-md-2">
+  <h5 class="bg-light font-weight-bold text-center ml-5 mb-4" style="max-width: 200px;">いいね数ランキング</h5>
+</div>
+<div class="mx-auto">
+  <% if review_favorite_ranks.present? %>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr class="text-center bg-light">
+            <th>ランキング</th>
+            <th>ニックネーム</th>
+            <th>書籍</th>
+            <th>いいね数</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @review_favorite_ranks.each.with_index(1) do |review, i| %>
+            <tr class="text-center">
+              <td><%= i %>位</td>
+              <td><%= review.customer.nickname %></td>
+              <td><%= review.book.title %></td>
+              <td><%= review.favorites.count %></td>
+              <td><%= link_to "詳細", review_path(review), class:"btn btn-success" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p>いいね数ランキングはありません。</p>
+  <% end %>
+</div>

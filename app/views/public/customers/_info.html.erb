@@ -1,0 +1,31 @@
+<table class="table table-hover text-center">
+  <tr><%= image_tag customer.get_profile_image(100,100) %></tr>
+  <tr>
+    <th>ニックネーム</th>
+    <th><%= customer.nickname %></th>
+  </tr>
+  <tr>
+    <th>自己紹介</th>
+    <th><%= customer.introduction %></th>
+  </tr>
+  <tr>
+    <th>フォロー数</th>
+    <th><%= customer.active_followings_count %></th>
+  </tr>
+  <tr>
+    <th>フォロワー数</th>
+    <th><%= customer.active_followers_count %></th>
+  </tr>
+  <tr>
+    <th>読書数</th>
+    <th><%= customer.reviews.count %></th>
+  </tr>
+</table>
+
+<% if customer.id == current_customer.id %>
+<div class='row'>
+  <%= link_to edit_customer_path(customer), class: "btn btn-outline-secondary btn-block" do %>
+     <i class="fas fa-cog edit_customer_#{customer.id}"></i>
+  <% end %>
+</div>
+<% end %>

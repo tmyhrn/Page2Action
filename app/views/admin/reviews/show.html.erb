@@ -1,0 +1,70 @@
+<div class="container my-4 px-md-0">
+  <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2 px-1 ml-md-2">
+    <h5 class="text-center font-weight-bold ml-md-5 text-nowrap">レビュー詳細</h5>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th>タイトル</th>
+          <th>著者</th>
+          <th>レビュー投稿者</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%=image_tag(@review.book.small_image_url, class: "book-image") %></td>
+          <td><%= @review.book.title %></td>
+          <td><%= @review.book.author %></td>
+          <td><%= @review.customer.nickname %></td>
+          <td><%= link_to "削除", admin_review_path, method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'col-9 btn btn-danger font-weight-bold'  %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_with model:@review, local: true do |f| %>
+        <table class="table table-borderless">
+          <!--星の表示-->
+          <tr>
+            <th style="font-size:18px;">星：</th>
+            <td>
+              <div id="star_<%= @review.id %>"></div>
+              <script>
+              $(document).on('turbolinks:load', function() {
+                let elem = document.querySelector('#star_<%= @review.id %>');
+                if (elem == null) return;
+
+                elem.innerHTML = "";
+                let opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  score: "<%= @review.star %>",
+                  readOnly: true,
+                };
+                raty(elem, opt);
+              });
+              </script>
+            </td>
+          </tr>
+          <!--感想の表示-->
+          <tr>
+            <th style="font-size:18px;">感想：</th>
+            <td style="font-size:16px;"><%= @review.impression %></td>
+          </tr>
+          <!--活かしたいことの表示-->
+          <tr>
+            <th class="text-nowrap" style="font-size:18px;">活かしたいこと：</th>
+            <td style="font-size:16px;"><%= @review.action%></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

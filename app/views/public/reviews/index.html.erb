@@ -1,0 +1,111 @@
+<div class="container my-4 px-md-0">
+  <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2 px-1 ml-md-2">
+    <h4 class="text-center font-weight-bold ml-md-5 text-nowrap">レビュー一覧</h4>
+  </div>
+
+  <!--星ごとの表示とタグ検索-->
+  <div class="d-flex flex-wrap justify-content-center align-items-center mb-3">
+    <!--星ごとの表示-->
+    <div class="filter-form mb-2">
+      <%= form_tag reviews_path, method: :get, id: "filter-form" do %>
+        <div class="d-flex justify-content-center align-items-center">
+          <%= select_tag :star, options_for_select([["全て表示", ""], [5, 5], [4, 4], [3, 3], [2, 2], [1, 1]], params[:star]), class: "form-control mr-1" %>
+          <%= submit_tag "表示", form: "filter-form", class: "btn btn-primary mr-2" %>
+        </div>
+      <% end %>
+    </div>
+    <!--タグ検索-->
+    <div class="search-form mb-2 mr-md-2">
+      <%= form_with url: tagsearches_search_path, method: :get, local: true do |f| %>
+        <div class="d-flex justify-content-center align-items-center">
+          <%= f.text_field :content, class: "form-control", placeholder: "タグを入力" %>
+          <%= f.submit "タグ検索", class: "btn btn-primary ml-1" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <!--一覧表示-->
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th>タイトル</th>
+          <th>著者</th>
+          <th>投稿者</th>
+          <th>評価</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= link_to '新しい順', reviews_path(latest: "true") %>
+        |<%= link_to '古い順', reviews_path(old: "true") %>
+        |<%= link_to '評価の高い順', reviews_path(star_count: "true") %>
+
+        <!--星ごとの表示-->
+        <% if params[:star].present? %>
+          <% @reviews.where(star: params[:star]).each do |review| %>
+            <tr>
+              <td><%= image_tag(review.book.small_image_url, class: "book-image") %></td>
+              <td><%= review.book.title %></td>
+              <td><%= review.book.author %></td>
+              <td><%= review.customer.nickname %></td>
+              <td>
+                <div id="star_<%= review.id %>"></div>
+                <script>
+                $(document).on('turbolinks:load', function() {
+                  let elem = document.querySelector('#star_<%= review.id %>');
+                  if (elem == null) return;
+                  
+                  elem.innerHTML = "";
+                    let opt = {  
+                      starOn: "<%= asset_path('star-on.png') %>",
+                      starOff: "<%= asset_path('star-off.png') %>",
+                      starHalf: "<%= asset_path('star-half.png') %>",
+                      score: "<%= review.star %>",
+                      readOnly: true,
+                    };
+                    raty(elem, opt);
+                  });
+                </script>
+              </td>
+              <td><%= link_to "詳細", review_path(review), class: "btn btn-success btn-block font-weight-bold" %></td>
+            </tr>
+          <% end %>
+        <!--全て表示-->
+        <% else %>
+          <% @reviews.each do |review| %>
+            <tr>
+              <td><%= image_tag(review.book.small_image_url, class: "book-image") %></td>
+              <td><%= review.book.title %></td>
+              <td><%= review.book.author %></td>
+              <td><%= review.customer.nickname %></td>
+              <td>
+                <div id="star_<%= review.id %>"></div>
+                <script>
+                $(document).on('turbolinks:load', function() {
+                  let elem = document.querySelector('#star_<%= review.id %>');
+                  if (elem == null) return;
+                  
+                  elem.innerHTML = "";
+                    let opt = {  
+                      starOn: "<%= asset_path('star-on.png') %>",
+                      starOff: "<%= asset_path('star-off.png') %>",
+                      starHalf: "<%= asset_path('star-half.png') %>",
+                      score: "<%= review.star %>",
+                      readOnly: true,
+                    };
+                    raty(elem, opt);
+                  });
+                </script>
+              </td>
+              <td><%= link_to "詳細", review_path(review), class: "btn btn-success btn-block font-weight-bold" %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @reviews %>
+  </div>
+</div>

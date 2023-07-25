@@ -1,0 +1,36 @@
+<div class="container my-4 px-sm-1">
+  <div class="px-1">
+    <h5 class="bg-light text-center font-weight-bold font-weight-bold ml-3 mb-4" style="width: 300px;"><%= @customer.nickname %>さんの会員詳細</h5>
+  </div>
+  <div class="col-sm-12 col-md-9 col-lg-8 col-xl-7 px-sm-0 px-md-1">
+    <table class="table table-borderless">
+      <tr>
+        <th>会員ID</th>
+        <td><%= @customer.id %></td>
+      </tr>
+      <tr>
+        <th>氏名</th>
+        <td><%= @customer.nickname %></td>
+      </tr>
+      <tr>
+        <th>自己紹介</th>
+        <td><%= @customer.introduction %></td>
+      </tr>
+        <th>メールアドレス</th>
+        <td><%= @customer.email %></td>
+      </tr>
+      <tr>
+        <th>会員ステータス</th>
+        <% if @customer.is_deleted == false %>
+          <td class="text-success"><strong>有効</strong></td>
+        <% else %>
+          <td class="text-muted"><strong>利用停止</strong></td>
+        <% end %>
+      </tr>
+      <th></th>
+      <td>
+        <%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success btn-sm mr-2 mr-md-5 px-4 py-2" %>
+      </td>
+    </table>
+  </div>
+</div>

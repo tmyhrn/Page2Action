@@ -1,0 +1,88 @@
+<div class="container my-4 px-md-0">
+  <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2 px-1 ml-md-2">
+    <h4 class="text-center font-weight-bold ml-md-5 mb-3 text-nowrap">レビュー詳細</h4>
+  </div>
+
+  <table class='table table-hover mb-3'>
+    <thead>
+      <tr>
+        <th></th>
+        <th>タイトル</th>
+        <th>著者</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%=image_tag(@review.book.small_image_url, class: "book-image") %></td>
+        <td><%= @review.book.title %></td>
+        <td><%= @review.book.author %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= form_with model:@review, local: true do |f| %>
+
+    <!-- 星の部分 -->
+    <div class="form-group row justify-content-center">
+      <label class="col-md-3 col-form-label font-weight-bold">星</label>
+      <div class="col-md-9 form-row mb-4">
+        <div class="col-md-6">
+          <div id="star_<%= @review.id %>"></div>
+          <script>
+            $(document).on('turbolinks:load', function() {
+              let elem = document.querySelector('#star_<%= @review.id %>');
+              if (elem == null) return;
+
+              elem.innerHTML = "";
+              let opt = {  
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                score: "<%= @review.star %>",
+                readOnly: true,
+              };
+              raty(elem, opt);
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+
+    <!-- タグの部分 -->
+    <div class="form-group row justify-content-center">
+      <label class="col-md-3 col-form-label font-weight-bold">タグ</label>
+      <div class="col-md-9 form-row mb-4">
+        <div class="col-md-8">
+          <%= f.text_field :category, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <!-- 感想の部分 -->
+    <div class="form-group row justify-content-center">
+      <label class="col-md-3 col-form-label font-weight-bold">感想</label>
+      <div class="col-md-9 form-row mb-4">
+        <div class="col-md-8">
+          <%= f.text_area :impression, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <!-- 活かしたいことの部分 -->
+    <div class="form-group row justify-content-center">
+      <label class="col-md-3 col-form-label font-weight-bold">活かしたいこと</label>
+      <div class="col-md-9 form-row mb-4">
+        <div class="col-md-8">
+          <%= f.text_field :action, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row justify-content-center">
+      <div class="col-3">
+        <%= f.submit "更新", class: "btn btn-success col-sm-12 font-weight-bold" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>

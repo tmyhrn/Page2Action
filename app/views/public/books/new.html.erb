@@ -1,0 +1,41 @@
+<div class="container my-4 px-md-0">
+  <div class="col-8 col-sm-5 col-md-4 col-lg-3 col-xl-2 px-1 ml-md-2">
+    <h5 class="text-center ml-md-5 font-weight-bold text-nowrap">『<%= @title %>』の検索結果</h5>
+  </div>
+  
+　<% if @books.any? %>
+  <table class='table table-hover table-inverse'>
+    <thead>
+      <tr>
+        <td></td>
+        <td>タイトル</td>
+        <td>著者</td>
+        <td></td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if @books %>
+        <% @books.each do |book| %>
+          <tr class="justify-content-center">
+            <td><%= link_to (image_tag(book.small_image_url)), book.item_url %></td>
+            <td><%= book.title %></td>
+            <td><%= book.author %></td>
+            <td>
+              <%= form_tag(books_path) do %>
+              <%= hidden_field_tag :isbn, book.isbn %>
+              <%= submit_tag 'レビューを書く', class: "btn btn-primary col-md-10 ml-4 font-weight-bold text-center" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @books %>
+  <% else %>
+    <div class="container my-5 px-sm-1 d-flex align-items-center justify-content-center" style="height: 60vh">
+      <h4  class="text-center vertical-center font-weight-bold">該当する書籍は見つかりませんでした。</h4>
+    </div>
+  <% end %>
+</div>

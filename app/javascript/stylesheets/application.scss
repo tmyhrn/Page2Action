@@ -1,0 +1,32 @@
+@use '~bootstrap/scss/bootstrap';
+
+* {
+  font-family: Yu Mincho;
+}
+
+// フッターが少ない時に最下部に
+body {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+}
+
+// ページネーション中央揃え
+.pagination {
+  justify-content: center;
+}
+
+@keyframes floatUpAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
