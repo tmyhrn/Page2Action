@@ -25,15 +25,15 @@ class Public::ReviewsController < ApplicationController
     @book = Book.find_by_isbn(params[:isbn] || @isbn)
     
     if params[:star].present?
-      @reviews = Review.where(star: params[:star]).page(params[:page]).per(4)
+      @reviews = Review.joins(:customer).where(customers: { is_deleted: false }, star: params[:star]).page(params[:page]).per(4)
     elsif params[:latest]
-      @reviews = Review.latest.page(params[:page]).per(4)
+      @reviews = Review.joins(:customer).where(customers: { is_deleted: false }).latest.page(params[:page]).per(4)
     elsif params[:old]
-      @reviews = Review.old.page(params[:page]).per(4)
+      @reviews = Review.joins(:customer).where(customers: { is_deleted: false }).old.page(params[:page]).per(4)
     elsif params[:star_count]
-      @reviews = Review.star_count.page(params[:page]).per(4)
+      @reviews = Review.joins(:customer).where(customers: { is_deleted: false }).star_count.page(params[:page]).per(4)
     else
-    @reviews = Review.joins(:customer).where(customers: { is_deleted: false }).page(params[:page]).per(4)
+      @reviews = Review.joins(:customer).where(customers: { is_deleted: false }).page(params[:page]).per(4)
     end
   end
 
