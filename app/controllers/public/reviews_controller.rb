@@ -17,6 +17,7 @@ class Public::ReviewsController < ApplicationController
       redirect_to customer_path(current_customer)
     else
       @isbn = params[:isbn]
+      flash[:danger] = "未記入項目があります！"
       render :new
     end
   end
@@ -54,7 +55,7 @@ class Public::ReviewsController < ApplicationController
       flash[:success] = "レビューを更新しました！"
       redirect_to reviews_path
     else
-      flash[:danger] = "レビューの更新が失敗しました！"
+      flash[:danger] = "未記入項目があります！"
       render :edit
     end
   end
@@ -85,7 +86,7 @@ class Public::ReviewsController < ApplicationController
   def ensure_active_customer
     @review = Review.find(params[:id])
     if @review.customer.is_deleted?
-      flash[:alert] = "退会済の方の投稿は見ることができません!"
+      flash[:alert] = "退会済の方の投稿は見ることができません！"
       redirect_to reviews_path
     end
   end
