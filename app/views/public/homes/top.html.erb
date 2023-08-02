@@ -5,7 +5,7 @@
         読書を<br>アクションへ！
       </h1>
       <% unless customer_signed_in? %>
-        <p style="animation: floatUpAnimation 1s ease-in-out;">
+        <p class="animate-float-up">
           まずは<%= link_to "体験", customers_guest_sign_in_path, method: :post %>！
         </p>
       <% end %>
