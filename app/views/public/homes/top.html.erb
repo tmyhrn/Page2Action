@@ -4,7 +4,7 @@
       <h1 style="font-size: 60px; margin: 30px; animation: floatUpAnimation 1s ease-in-out;">
         読書を<br>アクションへ！
       </h1>
-      <% unless customer_signed_in? %>
+      <% unless customer_signed_in? || admin_signed_in? %>
         <p class="animate-float-up">
           まずは<%= link_to "体験", customers_guest_sign_in_path, method: :post %>！
         </p>
