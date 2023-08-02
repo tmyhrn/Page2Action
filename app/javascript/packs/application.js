@@ -35,3 +35,5 @@ $(function(){
 $(function(){
   setTimeout("$('.alert').fadeOut('slow')", 2000);
 });
+
+//= require about
