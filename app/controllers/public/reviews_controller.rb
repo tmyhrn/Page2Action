@@ -1,6 +1,6 @@
 class Public::ReviewsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :ensure_correct_customer_review, only: [:edit, :update]
+  before_action :ensure_correct_customer_review, only: [:edit, :update, :destroy]
   before_action :ensure_active_customer, only: [:show, :edit, :update, :destroy]
 
   def new
