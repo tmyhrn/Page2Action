@@ -3,10 +3,11 @@
     <h4 class="text-center font-weight-bold ml-md-5 mb-3 text-nowrap">レビュー詳細</h4>
   </div>
 
+  <!--投稿内容の表示-->
   <div class="table-responsive">
     <table class="table table-hover">
       <thead>
-        <tr>
+        <tr class="text-center">
           <th></th>
           <th>タイトル</th>
           <th>著者</th>
@@ -16,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr class="text-center">
           <td><%= image_tag(@review.book.small_image_url, class: "book-image") %></td>
           <td><%= @review.book.title %></td>
           <td><%= @review.book.author %></td>
@@ -34,13 +35,14 @@
     </table>
   </div>
 
+  <!--星・感想・活かしたいことを表示-->
   <div class="row">
     <div class="col-md-6">
       <%= form_with model: @review, local: true do |f| %>
         <div class="table-responsive">
           <table class="table table-borderless">
             <tr>
-              <th style="font-size:18px;">星：</th>
+              <th style="font-size:17px;">星：</th>
               <td>
                 <div id="star_<%= @review.id %>"></div>
                 <script>
@@ -62,12 +64,12 @@
               </td>
             </tr>
             <tr>
-              <th style="font-size:18px;">感想：</th>
-              <td style="font-size:16px;"><%= @review.impression %></td>
+              <th style="font-size:17px;">感想：</th>
+              <td style="font-size:15px;"><%= @review.impression %></td>
             </tr>
             <tr>
-              <th class="text-nowrap" style="font-size:18px;">活かしたいこと：</th>
-              <td style="font-size:16px;"><%= @review.action %></td>
+              <th class="text-nowrap" style="font-size:17px;">活かしたいこと：</th>
+              <td style="font-size:15px;"><%= @review.action %></td>
             </tr>
             <tr>
               <% if @review.customer == current_customer %>
@@ -78,41 +80,43 @@
           </table>
         </div>
       <% end %>
-    
+      
+      <!--コメント機能-->
       <%= form_with model: [@review, @review_comment] do |f| %>
         <%= f.text_area :comment, rows: '4', placeholder: "コメントをここに", class: "form-control mb-3" %>
-        <%= f.submit "送信する", class: "btn btn-primary" %>
+        <%= f.submit "送信する", class: "btn btn-primary font-weight-bold" %>
       <% end %>
     </div>
     
+    <!--コメント表示-->
     <div class="row pb-5 ml-5 mt-3">
       <div class="col-md-12">
         <h5 class="font-weight-bold">コメント</h5>
         <div class="table-responsive">
-        <table class='table table-hover'>
-          <thead>
-            <tr>
-            <td></td>
-            <td>ユーザー名</td>
-            <td>コメント</td>
-            <td></td>
-          </tr>
-         </thead>
-         <tbody>
-           <% @review.review_comments.each do |review_comment| %>
-           <tr>
-             <td><%= image_tag review_comment.customer.get_profile_image(50,50) %></td>
-             <td class="text-center"><%= review_comment.customer.nickname %></td>
-             <td class="text-center"><%= review_comment.comment %></td>
-             <td>
-               <% if review_comment.customer == current_customer %>
-                 <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), method: :delete %>
-               <% end %>
-             </td>
-           </tr>
-           <% end %>
-         </tbody>
-        </table>
+          <table class='table table-hover'>
+            <thead>
+              <tr class="text-center">
+                <td></td>
+                <td><strong>ユーザー名</strong></td>
+                <td><strong>コメント</strong></td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+              <% @review.review_comments.each do |review_comment| %>
+                <tr class="text-center">
+                  <td><%= image_tag review_comment.customer.get_profile_image(50,50) %></td>
+                  <td><%= review_comment.customer.nickname %></td>
+                  <td><%= review_comment.comment %></td>
+                  <td>
+                    <% if review_comment.customer == current_customer %>
+                      <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

@@ -34,7 +34,7 @@ class Public::ReviewsController < ApplicationController
     elsif params[:star_count]
       @reviews = Review.joins(:customer).where(customers: { is_deleted: false }).star_count.page(params[:page]).per(4)
     else
-      @reviews = Review.joins(:customer).where(customers: { is_deleted: false }).page(params[:page]).per(4)
+      @reviews = Review.joins(:customer).where(customers: { is_deleted: false }).order(created_at: :desc).page(params[:page]).per(4)
     end
   end
 

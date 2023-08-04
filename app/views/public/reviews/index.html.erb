@@ -29,7 +29,7 @@
   <div class="table-responsive">
     <table class="table table-hover">
       <thead>
-        <tr>
+        <tr class="text-center">
           <th></th>
           <th>タイトル</th>
           <th>著者</th>
@@ -38,10 +38,10 @@
           <th></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="text-center">
         <%= link_to '新しい順', reviews_path(latest: "true") %>
-        |<%= link_to '古い順', reviews_path(old: "true") %>
-        |<%= link_to '評価の高い順', reviews_path(star_count: "true") %>
+        | <%= link_to '古い順', reviews_path(old: "true") %>
+        | <%= link_to '評価の高い順', reviews_path(star_count: "true") %>
 
         <!--星ごとの表示-->
         <% if params[:star].present? %>
@@ -100,7 +100,7 @@
                   });
                 </script>
               </td>
-              <td><%= link_to "詳細", review_path(review), class: "btn btn-success btn-block font-weight-bold" %></td>
+              <td><%= link_to "詳細", review_path(review), class: "btn btn-success font-weight-bold" %></td>
             </tr>
           <% end %>
         <% end %>
