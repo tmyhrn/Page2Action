@@ -12,15 +12,15 @@ class Public::RelationshipsController < ApplicationController
     redirect_to request.referer  
   end
   
-  # フォローしている会員を取得
+  # フォローしている会員を取得・表示
   def following
     customer = Customer.find(params[:customer_id])
-    @customers = customer.followings
+    @customers = customer.followings.where(is_deleted: false).page(params[:page]).per(3)
   end
 
-  # フォロー
+  # フォロワー会員を取得・表示
   def followers
     customer = Customer.find(params[:customer_id])
-    @customers = customer.followers
+    @customers = customer.followers.where(is_deleted: false).page(params[:page]).per(3) 
   end
 end

@@ -1,2 +1,42 @@
-<h1>Public::Relationships#followers</h1>
-<p>Find me in app/views/public/relationships/followers.html.erb</p>
+<div class="container px-sm-0">
+  <div class="row px-1 py-4 ml-md-3">
+    <div class="col-md-3 py-3">
+      <h4 class="mb-3 font-weight-bold">登録情報</h4>
+      <%= render 'public/customers/info', customer: current_customer %>
+    </div>
+    <div class="col-md-8 offset-md-1 p-3">
+      <h4 class="font-weight-bold">フォロワー一覧</h5>
+      <div class="mx-auto">
+        <div class="table-responsive">
+          <% if @customers.exists? %>
+            <table class="table table-hover">
+              <thead>
+                <tr class="text-center bg-light">
+                  <th>プロフィール画像</th>
+                  <th>ニックネーム</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @customers.each do |customer| %>
+                  <tr class="text-center">
+                    <td><%= image_tag customer.get_profile_image(70,70) %></td>
+                    <td><%= customer.nickname %></td>
+                    <td><%= link_to "詳細", customer_path(customer), class:"btn btn-success font-weight-bold" %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% else %>
+            <div class="d-flex justify-content-center align-items-center" style="min-height: 400px;">
+              <h5  class="font-weight-bold">フォロワーはいません。</h5>
+            </div>
+          <% end %>
+        </div>
+        <div class="d-flex justify-content-center">
+          <%= paginate @customers %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

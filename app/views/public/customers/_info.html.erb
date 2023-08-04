@@ -10,11 +10,11 @@
   </tr>
   <tr>
     <th>フォロー数</th>
-    <th><%= customer.active_followings_count %></th>
+    <th><%= link_to customer.active_followings_count, customer_followings_path(customer) %></th>
   </tr>
   <tr>
     <th>フォロワー数</th>
-    <th><%= customer.active_followers_count %></th>
+    <th><%= link_to customer.active_followers_count, customer_followers_path(customer) %></th>
   </tr>
   <tr>
     <th>読書数</th>

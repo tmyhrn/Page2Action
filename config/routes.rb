@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :customers, only: [:index, :show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
-      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followings' => 'relationships#following', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
     get 'customers/:id/check' => "customers#check", as: 'check'
