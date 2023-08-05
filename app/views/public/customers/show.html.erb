@@ -22,7 +22,7 @@
                 <td><%= image_tag(review.book.small_image_url, class: "book-image") %></td>
                 <td><%= review.book.title %></td>
                 <td><%= review.book.author %></td>
-                <td><%= link_to "詳細", review_path(review), class:"btn btn-success px-2" %></td>
+                <td><%= link_to "詳細", review_path(review), class:"btn btn-success font-weight-bold px-2" %></td>
               </tr>
             <% end %>
           </tbody>
