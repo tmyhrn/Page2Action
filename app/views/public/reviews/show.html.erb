@@ -42,7 +42,7 @@
         <div class="table-responsive">
           <table class="table table-borderless">
             <tr>
-              <th style="font-size:17px;">星：</th>
+              <th style="font-size:17px;">星</th>
               <td>
                 <div id="star_<%= @review.id %>"></div>
                 <script>
@@ -64,11 +64,11 @@
               </td>
             </tr>
             <tr>
-              <th style="font-size:17px;">感想：</th>
+              <th style="font-size:17px;">感想</th>
               <td style="font-size:15px;"><%= @review.impression %></td>
             </tr>
             <tr>
-              <th class="text-nowrap" style="font-size:17px;">活かしたいこと：</th>
+              <th class="text-nowrap" style="font-size:17px;">活かしたいこと</th>
               <td style="font-size:15px;"><%= @review.action %></td>
             </tr>
             <tr>
@@ -110,7 +110,7 @@
                   <td><%= review_comment.comment %></td>
                   <td>
                     <% if review_comment.customer == current_customer %>
-                      <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+                      <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), class:"btn btn-danger btn-sm", method: :delete, data: { confirm: "本当に削除しますか？" } %>
                     <% end %>
                   </td>
                 </tr>
