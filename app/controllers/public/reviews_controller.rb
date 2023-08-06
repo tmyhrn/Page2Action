@@ -53,7 +53,7 @@ class Public::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     if @review.update(review_params)
       flash[:success] = "レビューを更新しました！"
-      redirect_to reviews_path
+      redirect_to review_path(@review)
     else
       flash[:danger] = "未記入項目があります！"
       render :edit

@@ -16,7 +16,7 @@
       </thead>
       <tbody>
         <tr class="text-center">
-          <td><%=image_tag(@review.book.small_image_url, class: "book-image") %></td>
+          <td><%= image_tag(@review.book.small_image_url, class: "book-image") %></td>
           <td><%= @review.book.title %></td>
           <td><%= @review.book.author %></td>
           <td><%= @review.customer.nickname %></td>
@@ -31,8 +31,8 @@
       <%= form_with model:@review, local: true do |f| %>
         <table class="table table-borderless">
           <!--星の表示-->
-          <tr class-"mb-3">
-            <th style="font-size:18px;">星：</th>
+          <tr>
+            <th style="font-size:18px;">星</th>
             <td>
               <div id="star_<%= @review.id %>"></div>
               <script>
@@ -55,12 +55,12 @@
           </tr>
           <!--感想の表示-->
           <tr>
-            <th style="font-size:18px;">感想：</th>
+            <th style="font-size:18px;">感想</th>
             <td style="font-size:16px;"><%= @review.impression %></td>
           </tr>
           <!--活かしたいことの表示-->
           <tr>
-            <th class="text-nowrap" style="font-size:18px;">活かしたいこと：</th>
+            <th class="text-nowrap" style="font-size:18px;">活かしたいこと</th>
             <td style="font-size:16px;"><%= @review.action%></td>
           </tr>
         </table>

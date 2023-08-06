@@ -6,18 +6,17 @@
 　<% if @books.any? %>
     <table class='table table-hover table-inverse'>
       <thead>
-        <tr class="font-weight-bold">
+        <tr class="bg-light text-center font-weight-bold">
           <td></td>
           <td>タイトル</td>
           <td>著者</td>
           <td></td>
         </tr>
       </thead>
-  
       <tbody>
         <% if @books %>
           <% @books.each do |book| %>
-            <tr class="justify-content-center">
+            <tr class="text-center justify-content-center">
               <td><%= link_to (image_tag(book.small_image_url)), book.item_url %></td>
               <td><%= book.title %></td>
               <td><%= book.author %></td>

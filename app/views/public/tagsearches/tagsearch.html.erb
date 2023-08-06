@@ -7,7 +7,7 @@
       <div class="table-responsive">
         <table class='table table-hover table-inverse'>
           <thead>
-            <tr class="text-center">
+            <tr class="bg-light text-center">
               <th></th>
               <th>タイトル</th>
               <th>著者</th>
@@ -19,12 +19,12 @@
           <tbody>
             <% @reviews.each do |review| %>
               <tr class="text-center">
-                <td><%=image_tag(review.book.small_image_url, class: "book-image") %></td>
+                <td><%= image_tag(review.book.small_image_url, class: "book-image") %></td>
                 <td><%= review.book.title %></td>
                 <td><%= review.book.author %></td>
                 <td>
                   <% if review.category.present? %>
-                    <%=link_to review.category,tagsearches_search_path(content: review.category)%>
+                    <%= link_to review.category,tagsearches_search_path(content: review.category) %>
                   <% end %>
                 </td>
                 <td><%= review.customer.nickname %></td>

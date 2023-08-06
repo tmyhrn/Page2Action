@@ -20,8 +20,8 @@
                 <tr class="text-center">
                   <td><%= review.book.title %></td>
                   <td><%= review.customer.nickname %></td>
-                  <td><%= link_to "詳細", admin_review_path(review), class: "btn btn-success font-weight-bold" %></td>
-                  <td><%= link_to "削除", admin_review_path(review), method: :delete, class: "btn btn-danger font-weight-bold", data: { confirm: "レビューを削除してもよろしいですか？" } %></td>
+                  <td><%= link_to "詳細", admin_review_path(review), class: "btn btn-success btn-sm font-weight-bold" %></td>
+                  <td><%= link_to "削除", admin_review_path(review), method: :delete, class: "btn btn-danger btn-sm font-weight-bold", data: { confirm: "レビューを削除してもよろしいですか？" } %></td>
                 </tr>
               <% end %>
             </tbody>
