@@ -7,7 +7,6 @@
     <%= render 'layouts/errors', obj: @customer %>
     <%= form_with(model: @customer, method: :patch) do |f| %>
     
-
       <!--ユーザー画像の変更-->
       <div class="form-group row justify-content-center ">
         <label class="col-md-3 col-form-label">プロフィール画像</label>
@@ -53,10 +52,10 @@
         <label class="col-md-3 col-form-label"></label>
         <div class="col-md-9 form-row my-4">
           <div class="col-12 col-md-5 mb-3">
-            <%= f.submit "編集内容を保存", class: "btn btn-success btn-block" %>
+            <%= f.submit "編集内容を保存", class: "btn btn-success btn-block font-weight-bold" %>
           </div>
           <div class="col-12 col-md-4 offset-md-2 mb-3">
-            <%= link_to "退会する", check_path, class: "btn btn-danger btn-block" %>
+            <%= link_to "退会する", check_path, class: "btn btn-danger btn-block font-weight-bold" %>
           </div>
         </div>
       </div>
