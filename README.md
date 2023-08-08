@@ -24,7 +24,7 @@
 - テーブル定義書・詳細設計：https://docs.google.com/spreadsheets/d/1TOfTBA-DZSiWZg9ThqdAhcq064CVsjU-mMEof7jm1xc/edit#gid=159649951
 ​
 ## 開発環境
-- OS：Linux(CentOS)
+- OS：Linux(Amazon Linux release 2 (Karoo))
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
