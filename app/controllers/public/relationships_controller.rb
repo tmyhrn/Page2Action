@@ -14,13 +14,13 @@ class Public::RelationshipsController < ApplicationController
   
   # フォローしている会員を取得・表示
   def following
-    customer = Customer.find(params[:customer_id])
-    @customers = customer.followings.where(is_deleted: false).page(params[:page]).per(3)
+    @customer = Customer.find(params[:customer_id])
+    @customers = @customer.followings.where(is_deleted: false).page(params[:page]).per(3)
   end
 
   # フォロワー会員を取得・表示
   def followers
-    customer = Customer.find(params[:customer_id])
-    @customers = customer.followers.where(is_deleted: false).page(params[:page]).per(3) 
+    @customer = Customer.find(params[:customer_id])
+    @customers = @customer.followers.where(is_deleted: false).page(params[:page]).per(3) 
   end
 end
