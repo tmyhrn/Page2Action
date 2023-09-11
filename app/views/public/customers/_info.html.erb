@@ -18,7 +18,7 @@
   </tr>
   <tr>
     <th>読書数</th>
-    <th><%= customer.reviews.count %></th>
+    <th><%= link_to customer.reviews.count, customer_path(customer) %></th>
   </tr>
 </table>
 
