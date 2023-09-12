@@ -26,7 +26,7 @@
               <%= link_to @review.category, tagsearches_search_path(content:@review.category) %>
             <% end %>
           </td>
-          <td><%= @review.customer.nickname %></td>
+          <td><%= link_to @review.customer.nickname, customer_path(@review.customer) %></td>
           <td id="favorite_buttons_<%= @review.id %>">
             <%= render "public/favorites/favorite", review: @review %>
           </td>
