@@ -16,10 +16,10 @@
     <tbody>
       <tr class="text-center">
         <td><%=image_tag(@review.book.small_image_url, class: "book-image") %></td>
-        <td><%= @review.book.title %></td>
-        <td><%= @review.book.author %></td>
-        <td><%= @review.category %></td>
-        <td><%= @review.customer.nickname %></td>
+        <td class="align-middle text-center"><%= @review.book.title %></td>
+        <td class="align-middle text-center"><%= @review.book.author %></td>
+        <td class="align-middle text-center"><%= @review.category %></td>
+        <td class="align-middle text-center"><%= @review.customer.nickname %></td>
       </tr>
     </tbody>
   </table>

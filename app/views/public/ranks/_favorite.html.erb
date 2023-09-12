@@ -17,11 +17,11 @@
         <tbody>
           <% @review_favorite_ranks.each.with_index(1) do |review, i| %>
             <tr class="text-center">
-              <td><%= i %>位</td>
-              <td><%= review.customer.nickname %></td>
-              <td><%= review.book.title %></td>
-              <td><%= review.favorites.count %></td>
-              <td><%= link_to "詳細", review_path(review), class:"btn btn-success font-weight-bold" %></td>
+              <td class="align-middle text-center"><%= i %>位</td>
+              <td class="align-middle text-center"><%= review.customer.nickname %></td>
+              <td class="align-middle text-center"><%= review.book.title %></td>
+              <td class="align-middle text-center"><%= review.favorites.count %></td>
+              <td class="align-middle text-center"><%= link_to "詳細", review_path(review), class:"btn btn-success font-weight-bold" %></td>
             </tr>
           <% end %>
         </tbody>
