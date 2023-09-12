@@ -19,16 +19,16 @@
           <tbody>
             <% @reviews.each do |review| %>
               <tr class="text-center">
-                <td><%= image_tag(review.book.small_image_url, class: "book-image") %></td>
-                <td><%= review.book.title %></td>
-                <td><%= review.book.author %></td>
-                <td>
+                <td class="align-middle text-center"><%= image_tag(review.book.small_image_url, class: "book-image") %></td>
+                <td class="align-middle text-center"><%= review.book.title %></td>
+                <td class="align-middle text-center"><%= review.book.author %></td>
+                <td class="align-middle text-center">
                   <% if review.category.present? %>
                     <%= link_to review.category,tagsearches_search_path(content: review.category) %>
                   <% end %>
                 </td>
-                <td><%= review.customer.nickname %></td>
-                <td><%= link_to "詳細", review_path(review), class: "btn btn-success col-sm-12 font-weight-bold" %></td>
+                <td class="align-middle text-center"><%= review.customer.nickname %></td>
+                <td class="align-middle text-center"><%= link_to "詳細", review_path(review), class: "btn btn-success col-sm-12 font-weight-bold" %></td>
               </tr>
             <% end %>
           </tbody>

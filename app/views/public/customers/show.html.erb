@@ -20,9 +20,9 @@
             <% @reviews.each do |review| %>
               <tr>
                 <td><%= image_tag(review.book.small_image_url, class: "book-image") %></td>
-                <td><%= review.book.title %></td>
-                <td><%= review.book.author %></td>
-                <td><%= link_to "詳細", review_path(review), class:"btn btn-success font-weight-bold px-2" %></td>
+                <td class="align-middle text-center"><%= review.book.title %></td>
+                <td class="align-middle text-center"><%= review.book.author %></td>
+                <td class="align-middle text-center"><%= link_to "詳細", review_path(review), class:"btn btn-success font-weight-bold px-2" %></td>
               </tr>
             <% end %>
           </tbody>
