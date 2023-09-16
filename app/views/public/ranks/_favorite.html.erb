@@ -8,8 +8,9 @@
         <thead>
           <tr class="text-center bg-light">
             <th>ランキング</th>
-            <th>ニックネーム</th>
-            <th>書籍</th>
+            <th></th>
+            <th>書籍タイトル</th>
+            <th>投稿者</th>
             <th>いいね数</th>
             <th></th>
           </tr>
@@ -18,8 +19,9 @@
           <% @review_favorite_ranks.each.with_index(1) do |review, i| %>
             <tr class="text-center">
               <td class="align-middle text-center"><%= i %>位</td>
-              <td class="align-middle text-center"><%= review.customer.nickname %></td>
+              <td><%= image_tag(review.book.small_image_url, class: "book-image") %></td>
               <td class="align-middle text-center"><%= review.book.title %></td>
+              <td class="align-middle text-center"><%= review.customer.nickname %></td>
               <td class="align-middle text-center"><%= review.favorites.count %></td>
               <td class="align-middle text-center"><%= link_to "詳細", review_path(review), class:"btn btn-success font-weight-bold" %></td>
             </tr>
