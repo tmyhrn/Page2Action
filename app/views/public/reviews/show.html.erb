@@ -96,8 +96,8 @@
           <table class='table table-hover'>
             <thead>
               <tr class="bg-light text-center">
+                <td colspan="2"><strong>投稿者</strong></td>
                 <td></td>
-                <td><strong>ユーザー名</strong></td>
                 <td><strong>コメント</strong></td>
                 <td></td>
               </tr>
@@ -107,6 +107,7 @@
                 <tr class="text-center">
                   <td><%= image_tag review_comment.customer.get_profile_image(50,50) %></td>
                   <td><%= review_comment.customer.nickname %></td>
+                  <td class="mx-3"></td>
                   <td><%= review_comment.comment %></td>
                   <td>
                     <% if review_comment.customer == current_customer %>
